@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://filekit-9c7.pages.dev/sitemap.xml

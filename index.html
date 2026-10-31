@@ -1,0 +1,2964 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- 이 title·description·OG 기본값은 HTML 원본에 남겨 검색 크롤러가 읽을 수 있습니다. SEO_CONFIG와 같은 문구로 유지하세요. -->
+  <title>Filekit | 이미지·PDF·텍스트·색상 무료 도구 100개 이상</title>
+  <meta name="description" content="이미지 변환·압축·크기 변경·필터, PDF 합치기, 텍스트·색상 변환 등 100개 이상의 파일 유틸리티를 브라우저에서 무료로 사용하세요.">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#f5f6f2">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:site_name" content="Filekit">
+  <meta property="og:title" content="Filekit | 이미지·PDF·텍스트·색상 무료 도구 100개 이상">
+  <meta property="og:description" content="이미지 변환·압축·크기 변경·필터, PDF 합치기, 텍스트·색상 변환 등 100개 이상의 파일 유틸리티를 브라우저에서 무료로 사용하세요.">
+  <link rel="canonical" href="https://filekit-9c7.pages.dev/">
+  <meta property="og:url" content="https://filekit-9c7.pages.dev/">
+  <!-- Google 인증 토큰이 설정되지 않았습니다. -->
+  <!-- 네이버 인증 토큰이 설정되지 않았습니다. -->
+  <script id="softwareApplicationSchema" type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "@id": "https://filekit-9c7.pages.dev/#software",
+  "name": "Filekit",
+  "applicationCategory": "MultimediaApplication",
+  "operatingSystem": "Web browser",
+  "browserRequirements": "JavaScript and HTML Canvas support",
+  "description": "이미지 변환·압축·크기 변경·필터, PDF 합치기, 텍스트·색상 변환 등 100개 이상의 파일 유틸리티를 브라우저에서 무료로 사용하세요.",
+  "featureList": [
+    "이미지 압축과 품질 설정",
+    "이미지 형식 변환과 크기 프리셋",
+    "목표 용량 설정",
+    "이미지 크기 변경",
+    "개별 다운로드 및 ZIP",
+    "원본과 처리 결과 비교", "PDF 병합·추출·회전", "이미지→PDF", "단색 배경 투명화", "이모지 검색·복사"
+  ],
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": 0,
+    "priceCurrency": "KRW"
+  },
+  "url": "https://filekit-9c7.pages.dev/"
+}
+  </script>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f6f2;
+      --surface: #ffffff;
+      --surface-soft: #f8f9f6;
+      --surface-strong: #edf0ea;
+      --text: #202a25;
+      --muted: #626e65;
+      --subtle: #657168;
+      --line: #e0e5de;
+      --line-strong: #cbd3ca;
+      --accent: #356b5b;
+      --accent-hover: #2d5b4e;
+      --accent-soft: #edf5f0;
+      --success: #246848;
+      --success-soft: #eaf4ed;
+      --warning: #805b18;
+      --warning-soft: #fbf3df;
+      --danger: #a53e47;
+      --danger-soft: #fbefef;
+      --shadow: 0 12px 34px rgba(34, 48, 39, 0.055);
+      --radius-xl: 16px;
+      --radius-lg: 12px;
+      --radius-md: 10px;
+      --radius-sm: 8px;
+      --focus: 0 0 0 3px rgba(53, 107, 91, 0.22);
+    }
+    :root[data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #121713;
+      --surface: #1b221d;
+      --surface-soft: #202922;
+      --surface-strong: #2a342d;
+      --text: #eef2ed;
+      --muted: #a5b0a8;
+      --subtle: #89978e;
+      --line: #303b33;
+      --line-strong: #435047;
+      --accent: #a3d0ba;
+      --accent-hover: #b6dcc9;
+      --accent-soft: #263a30;
+      --success: #83cf9e;
+      --success-soft: #1e3828;
+      --warning: #e6c573;
+      --warning-soft: #3b321d;
+      --danger: #ef9da1;
+      --danger-soft: #3a2527;
+      --shadow: 0 16px 42px rgba(0, 0, 0, 0.18);
+      --focus: 0 0 0 3px rgba(163, 208, 186, 0.25);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { min-width: 320px; background: var(--bg); }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    button, input, select { font: inherit; }
+    button, select, input[type="checkbox"], input[type="radio"], input[type="range"] { cursor: pointer; }
+    button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, [tabindex="0"]:focus-visible {
+      outline: none;
+      box-shadow: var(--focus);
+    }
+    a { color: inherit; }
+    img { max-width: 100%; }
+    [hidden] { display: none !important; }
+    .container { width: min(1160px, calc(100% - 48px)); margin-inline: auto; }
+    .site-header { border-bottom: 1px solid var(--line); background: var(--surface); }
+    .header-inner {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .brand { display: inline-flex; align-items: center; gap: 11px; text-decoration: none; min-width: 0; }
+    .brand-mark {
+      width: 36px; height: 36px; display: grid; place-items: center;
+      border-radius: 11px; background: var(--accent); color: #fff; flex: none;
+    }
+    [data-theme="dark"] .brand-mark { color: #17231d; }
+    .brand-mark svg { width: 21px; height: 21px; }
+    .brand-name { display: block; font-size: 18px; line-height: 1.1; font-weight: 760; letter-spacing: -0.045em; }
+    .brand-caption { display: block; margin-top: 3px; color: var(--muted); font-size: 11px; letter-spacing: 0.01em; }
+    .header-right { display: flex; align-items: center; gap: 28px; }
+    .main-nav { display: flex; align-items: center; gap: 25px; }
+    .main-nav a { color: var(--muted); text-decoration: none; font-size: 13px; font-weight: 620; }
+    .main-nav a:hover { color: var(--text); }
+    .theme-toggle {
+      min-height: 38px; padding: 0 12px; border: 1px solid var(--line); border-radius: 10px;
+      background: var(--surface); color: var(--text); font-size: 12px; font-weight: 650;
+    }
+    .theme-toggle:hover { border-color: var(--line-strong); background: var(--surface-soft); }
+
+    .hero { padding: 48px 0 28px; }
+    .hero-content { max-width: 720px; }
+    .eyebrow {
+      margin: 0 0 8px; color: var(--accent); font-size: 12px; font-weight: 680;
+      letter-spacing: 0.02em;
+    }
+    h1, h2, h3, h4, p { margin-top: 0; }
+    h1 { max-width: 760px; margin-bottom: 12px; font-size: clamp(34px, 4.5vw, 48px); line-height: 1.18; letter-spacing: -0.045em; font-weight: 740; }
+    .hero-copy { max-width: 670px; margin: 0; color: var(--muted); font-size: 16px; line-height: 1.75; }
+
+    main { padding-bottom: 70px; }
+    .workbench {
+      padding: 27px; border: 1px solid var(--line); border-radius: var(--radius-xl);
+      background: var(--surface); box-shadow: var(--shadow);
+    }
+    .workbench-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 22px; margin-bottom: 20px; }
+    .workbench-heading .eyebrow { margin-bottom: 5px; }
+    .workbench-heading h2 { margin: 0; font-size: 22px; line-height: 1.3; letter-spacing: -0.035em; }
+    .privacy-note { max-width: 330px; margin: 2px 0 0; color: var(--muted); font-size: 11px; line-height: 1.5; }
+    .dropzone {
+      min-height: 150px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 22px 20px; border: 1px dashed var(--line-strong); border-radius: var(--radius-lg);
+      background: var(--surface-soft); text-align: center; transition: border-color 120ms ease, background 120ms ease;
+    }
+    .dropzone:hover, .dropzone.is-dragging { border-color: var(--accent); background: var(--accent-soft); }
+    .dropzone[aria-disabled="true"] { opacity: 0.62; cursor: not-allowed; }
+    .upload-icon { width: 30px; height: 30px; margin-bottom: 9px; color: var(--accent); }
+    .dropzone-title { margin: 0; font-size: 15px; font-weight: 700; letter-spacing: -0.02em; }
+    .dropzone-hint { margin: 5px 0 0; color: var(--muted); font-size: 12px; }
+    .upload-actions { display: flex; align-items: center; justify-content: center; margin-top: 12px; }
+    .file-input-hidden { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; clip-path: inset(50%); border: 0; }
+    .button {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      min-height: 42px; padding: 0 16px; border: 1px solid transparent; border-radius: 10px;
+      font-size: 13px; font-weight: 700; line-height: 1.2; text-decoration: none;
+    }
+    .button:disabled { opacity: 0.5; cursor: not-allowed; }
+    .button-primary { background: var(--accent); color: #fff; }
+    [data-theme="dark"] .button-primary { color: #17231d; }
+    .button-primary:hover:not(:disabled) { background: var(--accent-hover); }
+    .button-secondary { border-color: var(--line); background: var(--surface); color: var(--text); }
+    .button-secondary:hover:not(:disabled) { border-color: var(--line-strong); background: var(--surface-soft); }
+    .button-quiet { min-height: 36px; padding: 0 11px; border-color: transparent; background: transparent; color: var(--muted); font-size: 12px; }
+    .button-quiet:hover:not(:disabled) { background: var(--surface-soft); color: var(--text); }
+    .button-danger-quiet { min-height: 34px; padding: 0 9px; border-color: transparent; background: transparent; color: var(--danger); font-size: 12px; font-weight: 650; }
+    .button-danger-quiet:hover:not(:disabled) { background: var(--danger-soft); }
+
+    fieldset.settings-fieldset { min-width: 0; margin: 25px 0 0; padding: 0; border: 0; }
+    .settings-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; }
+    .setting-card { min-width: 0; padding: 3px 18px 8px; border: 0; border-left: 1px solid var(--line); border-radius: 0; background: transparent; }
+    .setting-card:first-child { padding-left: 0; border-left: 0; }
+    .setting-card:last-child { padding-right: 0; }
+    .setting-heading { display: flex; align-items: flex-start; margin-bottom: 15px; }
+    .setting-heading h3 { margin: 0; font-size: 14px; font-weight: 720; letter-spacing: -0.02em; }
+    .setting-heading p { margin: 3px 0 0; color: var(--muted); font-size: 11px; line-height: 1.5; }
+    .mode-options { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin-bottom: 17px; }
+    .mode-option { position: relative; min-width: 0; }
+    .mode-option input { position: absolute; opacity: 0; pointer-events: none; }
+    .mode-option span {
+      min-height: 39px; display: flex; align-items: center; justify-content: center; padding: 7px 8px;
+      border: 1px solid var(--line); border-radius: 9px; background: var(--surface); color: var(--muted);
+      text-align: center; font-size: 11px; font-weight: 650;
+    }
+    .mode-option input:checked + span { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
+    .mode-option input:focus-visible + span { box-shadow: var(--focus); }
+    .control-label { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin-bottom: 7px; font-size: 12px; font-weight: 680; }
+    .control-value { color: var(--accent); font-size: 12px; font-weight: 750; font-variant-numeric: tabular-nums; }
+    input[type="range"] { width: 100%; margin: 6px 0; accent-color: var(--accent); }
+    .range-scale { display: flex; justify-content: space-between; color: var(--subtle); font-size: 10px; }
+    .field-help { margin: 8px 0 0; color: var(--muted); font-size: 11px; line-height: 1.55; }
+    .number-field, .select-field {
+      width: 100%; min-height: 40px; padding: 8px 11px; border: 1px solid var(--line-strong); border-radius: 9px;
+      background: var(--surface); color: var(--text); font-size: 13px;
+    }
+    .number-field:hover, .select-field:hover { border-color: var(--accent); }
+    .number-field:disabled, .select-field:disabled, input[type="range"]:disabled { cursor: not-allowed; opacity: 0.58; }
+    .input-with-unit { display: flex; align-items: center; gap: 8px; }
+    .input-with-unit .number-field { min-width: 0; }
+    .input-unit { color: var(--muted); font-size: 12px; white-space: nowrap; }
+    .dimension-row { display: grid; grid-template-columns: minmax(0, 1fr) 20px minmax(0, 1fr); align-items: center; gap: 7px; }
+    .dimension-x { color: var(--subtle); text-align: center; font-size: 12px; }
+    .check-row { display: flex; align-items: flex-start; gap: 8px; margin-top: 12px; color: var(--text); font-size: 11px; line-height: 1.5; }
+    .check-row input { flex: none; margin: 2px 0 0; accent-color: var(--accent); }
+    .target-panel { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line); }
+    .capability-note { margin: 11px 0 0; padding: 9px 10px; border-radius: 8px; background: var(--surface-soft); color: var(--muted); font-size: 10px; line-height: 1.55; }
+    .format-select-wrap { margin-top: 4px; }
+    .size-controls { margin-top: 13px; }
+
+    .notice {
+      margin-top: 18px; padding: 11px 13px; border: 1px solid var(--line); border-radius: 10px;
+      background: var(--surface-soft); color: var(--text); font-size: 12px; line-height: 1.55;
+    }
+    .notice[data-kind="error"] { border-color: color-mix(in srgb, var(--danger) 35%, var(--line)); background: var(--danger-soft); color: var(--danger); }
+    .notice[data-kind="warning"] { border-color: color-mix(in srgb, var(--warning) 35%, var(--line)); background: var(--warning-soft); color: var(--warning); }
+    .notice[data-kind="success"] { border-color: color-mix(in srgb, var(--success) 35%, var(--line)); background: var(--success-soft); color: var(--success); }
+    .run-toolbar {
+      display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-top: 21px;
+      padding: 15px 0 17px; border-bottom: 1px solid var(--line);
+    }
+    .selection-summary { color: var(--muted); font-size: 12px; }
+    .toolbar-actions { display: flex; align-items: center; gap: 7px; flex: none; }
+    .run-toolbar .button-primary { min-width: 154px; min-height: 45px; }
+    .progress-panel { padding: 16px 0 3px; }
+    .progress-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 8px; }
+    .progress-top > div { min-width: 0; }
+    .progress-title { margin: 0; font-size: 12px; font-weight: 700; overflow-wrap: anywhere; }
+    .progress-detail { margin: 3px 0 0; color: var(--muted); font-size: 11px; overflow-wrap: anywhere; }
+    .progress-count { color: var(--muted); font-size: 11px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    progress { display: block; width: 100%; height: 7px; overflow: hidden; border: 0; border-radius: 99px; background: var(--surface-strong); }
+    progress::-webkit-progress-bar { border-radius: 99px; background: var(--surface-strong); }
+    progress::-webkit-progress-value { border-radius: 99px; background: var(--accent); }
+    progress::-moz-progress-bar { border-radius: 99px; background: var(--accent); }
+
+    .queue-section { padding-top: 22px; }
+    .queue-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 5px; }
+    .queue-title-block { min-width: 0; }
+    .queue-header h3 { margin: 0; font-size: 15px; font-weight: 720; letter-spacing: -0.02em; }
+    .queue-count { display: inline-grid; place-items: center; min-width: 22px; height: 22px; margin-left: 5px; padding: 0 6px; border-radius: 99px; background: var(--surface-strong); color: var(--muted); font-size: 10px; vertical-align: 2px; }
+    .queue-summary { margin: 3px 0 0; color: var(--muted); font-size: 11px; }
+    .zip-button { min-height: 38px; flex: none; }
+    .zip-hint { margin: 5px 0 12px; color: var(--muted); font-size: 10px; line-height: 1.5; }
+    .zip-hint[data-kind="warning"] { color: var(--warning); }
+    .empty-state { padding: 28px 18px; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface-soft); color: var(--muted); text-align: center; font-size: 12px; }
+    .empty-state strong { display: block; margin-bottom: 4px; color: var(--text); font-size: 13px; }
+    .file-list { display: grid; gap: 10px; }
+    .file-card {
+      display: grid; grid-template-columns: 90px minmax(0, 1fr); gap: 15px; min-width: 0;
+      padding: 13px; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface);
+    }
+    .file-card.state-error { border-color: color-mix(in srgb, var(--danger) 35%, var(--line)); }
+    .file-thumb { position: relative; display: grid; place-items: center; width: 90px; height: 82px; overflow: hidden; border-radius: 9px; background: var(--surface-strong); color: var(--muted); }
+    .file-thumb img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    .thumb-placeholder { font-size: 10px; font-weight: 700; }
+    .type-stamp { position: absolute; right: 5px; bottom: 5px; padding: 2px 5px; border: 1px solid rgba(255,255,255,.24); border-radius: 5px; background: rgba(18, 27, 43, .78); color: #fff; font-size: 8px; font-weight: 800; letter-spacing: .04em; }
+    .file-main { min-width: 0; }
+    .file-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+    .file-name { max-width: 100%; margin: 1px 0 3px; overflow: hidden; color: var(--text); font-size: 13px; font-weight: 700; text-overflow: ellipsis; white-space: nowrap; }
+    .file-meta { margin: 0; color: var(--muted); font-size: 10px; line-height: 1.5; }
+    .status-badge { flex: none; padding: 4px 8px; border-radius: 99px; background: var(--surface-strong); color: var(--muted); font-size: 9px; font-weight: 740; line-height: 1.4; white-space: nowrap; }
+    .status-badge.status-done { background: var(--success-soft); color: var(--success); }
+    .status-badge.status-warning { background: var(--warning-soft); color: var(--warning); }
+    .status-badge.status-error { background: var(--danger-soft); color: var(--danger); }
+    .status-badge.status-processing { background: var(--accent-soft); color: var(--accent); }
+    .compare-row { display: flex; flex-wrap: wrap; align-items: center; gap: 5px 9px; margin-top: 10px; color: var(--muted); font-size: 10px; font-variant-numeric: tabular-nums; }
+    .compare-row strong { color: var(--text); font-size: 11px; }
+    .change-label { padding: 2px 6px; border-radius: 5px; background: var(--success-soft); color: var(--success); font-size: 9px; font-weight: 740; }
+    .change-label.increased { background: var(--warning-soft); color: var(--warning); }
+    .file-message { margin: 9px 0 0; color: var(--muted); font-size: 10px; line-height: 1.55; overflow-wrap: anywhere; }
+    .file-message.error-text { color: var(--danger); }
+    .file-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; margin-top: 9px; }
+    .file-actions .button { min-height: 34px; padding: 0 10px; border-radius: 7px; font-size: 11px; }
+    .file-actions .button-secondary { border-color: var(--line); }
+    .file-actions .button-quiet { min-height: 34px; }
+    .file-card.state-processing { border-color: color-mix(in srgb, var(--accent) 38%, var(--line)); }
+
+    .compare-dialog {
+      width: min(960px, calc(100% - 32px)); max-width: none; max-height: calc(100% - 32px);
+      padding: 0; border: 1px solid var(--line-strong); border-radius: 14px; overflow: auto;
+      background: var(--surface); color: var(--text); box-shadow: var(--shadow);
+    }
+    .compare-dialog::backdrop { background: rgba(16, 22, 18, 0.58); }
+    .compare-dialog-inner { padding: 22px; }
+    .compare-dialog-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 15px; }
+    .compare-dialog-header h2 { margin: 0; font-size: 18px; letter-spacing: -0.025em; }
+    .compare-file-name { margin: 4px 0 0; color: var(--muted); font-size: 12px; overflow-wrap: anywhere; }
+    .compare-images { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .compare-figure { min-width: 0; margin: 0; border: 1px solid var(--line); border-radius: 9px; overflow: hidden; }
+    .compare-frame { display: grid; place-items: center; min-height: 220px; padding: 8px; background: var(--surface-soft); }
+    .compare-frame img { display: block; max-width: 100%; max-height: 55vh; object-fit: contain; }
+    .compare-figure figcaption { display: flex; justify-content: space-between; gap: 10px; padding: 9px 11px; border-top: 1px solid var(--line); font-size: 11px; }
+    .compare-figure figcaption span { color: var(--muted); text-align: right; }
+    .compare-dialog-note { margin: 11px 0 0; color: var(--muted); font-size: 10px; }
+
+    .ad-slot {
+      min-height: 122px; display: flex; flex-direction: column; align-items: stretch; justify-content: flex-start;
+      margin: 28px 0 58px; padding: 9px 12px; border: 1px solid var(--line); border-radius: 8px;
+      background: transparent; color: var(--subtle);
+    }
+    .ad-slot-label { align-self: flex-start; margin: 0; color: var(--muted); font-size: 9px; font-weight: 650; }
+    .ad-slot-content { display: grid; place-items: center; min-height: 90px; width: 100%; max-width: 100%; overflow: hidden; }
+    .ad-slot-content iframe, .ad-slot-content img { max-width: 100%; border: 0; }
+    .content-section { margin-top: 58px; }
+    .content-section > .eyebrow { margin-bottom: 7px; }
+    .section-title { margin: 0 0 11px; font-size: clamp(23px, 3.2vw, 30px); line-height: 1.3; letter-spacing: -0.045em; }
+    .section-intro { max-width: 720px; margin: 0 0 24px; color: var(--muted); font-size: 14px; line-height: 1.8; }
+    .feature-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 13px; }
+    .feature-card { min-width: 0; padding: 20px; border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--surface); }
+    .feature-index { display: inline-block; margin-bottom: 8px; color: var(--accent); font-size: 11px; font-weight: 650; }
+    .feature-card h3 { margin: 0 0 7px; font-size: 15px; letter-spacing: -0.02em; }
+    .feature-card p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.7; }
+    .how-copy { max-width: 720px; margin: 0; color: var(--muted); font-size: 14px; line-height: 1.8; }
+    .faq-list { display: grid; gap: 9px; }
+    .faq-list details { padding: 15px 17px; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface); }
+    .faq-list summary { cursor: pointer; color: var(--text); font-size: 13px; font-weight: 700; }
+    .faq-list details p { margin: 10px 0 0; color: var(--muted); font-size: 12px; line-height: 1.75; }
+    .site-footer { border-top: 1px solid var(--line); background: var(--surface); }
+    .footer-inner { display: flex; justify-content: space-between; gap: 30px; padding: 24px 0 30px; }
+    .footer-brand { margin: 0 0 4px; font-size: 13px; font-weight: 760; }
+    .footer-copy { max-width: 650px; margin: 0; color: var(--muted); font-size: 10px; line-height: 1.7; }
+    .footer-meta { color: var(--muted); font-size: 10px; text-align: right; white-space: nowrap; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+    @media (max-width: 900px) {
+      .settings-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .setting-card:first-child { grid-column: 1 / -1; padding: 0 0 17px; margin-bottom: 15px; border-bottom: 1px solid var(--line); }
+      .setting-card:nth-child(2) { padding-left: 0; border-left: 0; }
+      .header-right { gap: 17px; }
+      .main-nav { gap: 16px; }
+    }
+    @media (max-width: 680px) {
+      .container { width: min(100% - 30px, 560px); }
+      .header-inner { min-height: 66px; gap: 12px; }
+      .brand-caption { display: none; }
+      .header-right { gap: 10px; }
+      .main-nav { gap: 12px; }
+      .main-nav a { font-size: 11px; }
+      .main-nav a:last-child { display: none; }
+      .theme-toggle { min-height: 35px; padding: 0 9px; font-size: 10px; }
+      .hero { padding: 43px 0 27px; }
+      h1 { font-size: clamp(33px, 9vw, 44px); }
+      .workbench { padding: 19px 15px; border-radius: 14px; }
+      .workbench-heading { flex-direction: column; gap: 11px; margin-bottom: 18px; }
+      .workbench-heading h2 { font-size: 21px; }
+      .privacy-note { max-width: none; margin-top: 0; }
+      .dropzone { min-height: 150px; padding: 20px 14px; }
+      .dropzone-title { font-size: 13px; }
+      .dropzone-hint { font-size: 10px; }
+      .settings-grid { grid-template-columns: 1fr; }
+      .setting-card, .setting-card:first-child, .setting-card:nth-child(2), .setting-card:last-child {
+        grid-column: auto; padding: 16px 0; margin: 0; border-left: 0; border-bottom: 1px solid var(--line);
+      }
+      .setting-card:first-child { padding-top: 0; }
+      .setting-card:last-child { padding-bottom: 0; border-bottom: 0; }
+      .run-toolbar { align-items: flex-start; flex-direction: column; gap: 11px; }
+      .file-actions .button, .file-actions .button-quiet { min-height: 40px; }
+      .toolbar-actions { width: 100%; justify-content: space-between; }
+      .run-toolbar .button-primary { min-width: 0; flex: 1; }
+      .queue-header { align-items: stretch; flex-direction: column; gap: 9px; }
+      .queue-summary { text-align: left; }
+      .zip-button { width: 100%; }
+      .compare-dialog-inner { padding: 16px; }
+      .compare-images { grid-template-columns: 1fr; gap: 9px; }
+      .compare-frame { min-height: 150px; }
+      .compare-frame img { max-height: 31vh; }
+      .file-card { grid-template-columns: 66px minmax(0, 1fr); gap: 11px; padding: 10px; }
+      .file-thumb { width: 66px; height: 66px; }
+      .file-card-top { gap: 7px; }
+      .file-name { font-size: 12px; }
+      .status-badge { padding: 3px 6px; font-size: 8px; }
+      .compare-row { gap: 5px 7px; }
+      .ad-slot { margin: 23px 0 43px; }
+      .content-section { margin-top: 43px; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .feature-card { padding: 17px; }
+      .footer-inner { flex-direction: column; gap: 12px; }
+      .footer-meta { text-align: left; white-space: normal; }
+    }
+    @media (max-width: 390px) {
+      .container { width: calc(100% - 24px); }
+      .brand-name { font-size: 16px; }
+      .main-nav { gap: 9px; }
+      .main-nav a { font-size: 10px; }
+      .theme-toggle { padding-inline: 7px; }
+      .workbench { padding-inline: 12px; }
+      .file-card { grid-template-columns: 54px minmax(0, 1fr); gap: 9px; }
+      .file-thumb { width: 54px; height: 58px; }
+      .status-badge { white-space: normal; text-align: center; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
+    }
+
+    /* Additional local tools, written independently from the reference catalog. */
+    .tool-block {margin-top: 26px;padding: 27px;border: 1px solid var(--line);border-radius: var(--radius-xl);background: var(--surface);box-shadow: var(--shadow);scroll-margin-top:20px}
+    .tool-block h2 {font-size:21px; margin: 0 0 8px;letter-spacing:-.035em}
+    .tool-block .muted {font-size:12px;color:var(--muted);line-height:1.7}
+    .kit-controls {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;margin:18px 0}
+    .kit-controls>label {display:flex;flex-direction:column;gap:7px;font-size:12px;font-weight:700;min-width:0}
+    .kit-controls label input, .kit-controls label select, .kit-search {min-width:0;min-height:41px;padding:8px 11px;border:1px solid var(--line-strong);border-radius:9px;background:var(--surface);color:var(--text);font-size:13px}
+    .kit-input {display:block;max-width:100%;width:100%;margin:7px 0 13px;padding:12px;border:1px dashed var(--line-strong);border-radius:9px;background:var(--surface-soft);color:var(--text);font-size:12px}
+    .kit-actions {display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:12px 0}
+    .kit-result {margin-top:14px;padding:11px 13px;border-radius:9px;background:var(--surface-soft);font-size:12px;color:var(--muted);overflow-wrap:anywhere}
+    .kit-result[data-kind="error"] {background:var(--danger-soft);color:var(--danger)}
+    .kit-result[data-kind="success"] {background:var(--success-soft);color:var(--success)}
+    .kit-result[data-kind="busy"] {background:var(--accent-soft);color:var(--text)}
+    .kit-emoji-search {width:100%;max-width:450px}
+    .kit-emoji-grid {display:grid;grid-template-columns:repeat(auto-fill,minmax(54px,1fr));gap:8px;margin-top:14px}
+    .kit-emoji {display:grid;place-items:center;height:51px;border:1px solid var(--line);border-radius:9px;background:var(--surface-soft);font-size:26px;cursor:pointer}
+    .kit-emoji:hover {border-color:var(--accent);background:var(--accent-soft)}
+    .kit-emoji:focus-visible {outline:2px solid var(--accent)}
+    .kit-bg-preview {display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+    .kit-bg-preview figure {margin:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;min-width:0}
+    .kit-bg-preview figure img {width:100%;height:230px;object-fit:contain;display:block;background-color:var(--surface-soft);background-image:linear-gradient(45deg,#c9ccc9 25%,transparent 25%),linear-gradient(-45deg,#c9ccc9 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#c9ccc9 75%),linear-gradient(-45deg,transparent 75%,#c9ccc9 75%);background-size:22px 22px;background-position:0 0,0 11px,11px -11px,-11px 0}
+    .kit-bg-preview figcaption {padding:8px;font-size:11px;color:var(--muted);text-align:center}
+    @media(max-width:640px){.tool-block{padding:18px;margin-top:18px}.kit-controls{grid-template-columns:1fr}.kit-bg-preview figure img{height:175px}.kit-emoji-grid{grid-template-columns:repeat(auto-fill,minmax(47px,1fr))}}
+
+    @media(max-width:680px){
+      .header-inner {flex-wrap:wrap;padding-top:10px;padding-bottom:8px;}
+      .header-right {width:100%;display:flex;justify-content:space-between;align-items:center;gap:9px;}
+      .main-nav {display:flex;max-width:calc(100% - 97px);overflow-x:auto;overflow-y:hidden;white-space:nowrap;gap:18px;padding:5px 0;scrollbar-width:thin;}
+      .main-nav a {flex-shrink:0;font-size:12px;}
+      .main-nav a:last-child {display:inline;}
+      .theme-toggle {flex-shrink:0;}
+    }
+
+/* Filekit v2.0 dashboard; retains the original v2.0 processing interfaces. */
+:root { scroll-behavior: smooth; }
+.fk-dashboard {padding-top:32px;padding-bottom:45px;}
+.fk-hero {padding:28px 0 25px;display:flex;align-items:flex-end;justify-content:space-between;gap:22px;}
+.fk-hero h1 {font-size:clamp(32px,4.4vw,51px);font-weight:790;letter-spacing:-.055em;margin:5px 0 12px;line-height:1.13;}
+.fk-hero p.fk-intro {font-size:14px;color:var(--muted);max-width:590px;margin:0;line-height:1.75;}
+.fk-eyebrow {font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--accent);}
+.fk-summary {white-space:nowrap;color:var(--muted);font-size:12px;border:1px solid var(--line);border-radius:50px;padding:9px 13px;background:var(--surface);}
+.fk-toolbar {display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:22px;}
+.fk-search {min-height:47px;flex:1;min-width:220px;border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:0 16px 0 41px;color:var(--text);font-size:14px;box-shadow:var(--shadow);}
+.fk-search-wrap {position:relative;display:flex;flex:1;min-width:240px;}
+.fk-search-wrap svg {position:absolute;left:14px;top:14px;color:var(--muted);pointer-events:none;}
+.fk-filter {display:flex;gap:7px;flex-wrap:wrap;margin-bottom:30px;}
+.fk-filter button {min-height:36px;border:1px solid var(--line);background:var(--surface);border-radius:9px;padding:0 13px;color:var(--muted);font-weight:670;font-size:12px;cursor:pointer;}
+.fk-filter button:hover,.fk-filter button[aria-pressed='true'] {background:var(--accent-soft);color:var(--accent);border-color:var(--accent);}
+.fk-group {margin-bottom:32px;}
+.fk-group-head {display:flex;align-items:baseline;gap:10px;margin-bottom:12px;}
+.fk-group-head h2 {margin:0;font-size:19px;font-weight:770;letter-spacing:-.035em;}
+.fk-group-head span {color:var(--muted);font-size:12px;}
+.fk-grid {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px;}
+.fk-card {min-width:0;min-height:119px;padding:17px;display:flex;flex-direction:column;align-items:flex-start;text-align:left;border:1px solid var(--line);background:var(--surface);color:var(--text);border-radius:12px;cursor:pointer;transition:transform .14s,box-shadow .14s,border-color .14s;}
+.fk-card:hover {transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--accent);}
+.fk-card:focus-visible {outline:3px solid var(--accent);outline-offset:2px;}
+.fk-card-icon {display:grid;place-items:center;width:31px;height:31px;border:1px solid var(--line);border-radius:9px;background:var(--surface-soft);margin-bottom:12px;color:var(--accent);font-size:15px;font-weight:800;}
+.fk-card strong {font-size:13px;font-weight:740;letter-spacing:-.025em;line-height:1.35;}
+.fk-card-desc {font-size:11px;color:var(--muted);line-height:1.5;margin-top:4px;}
+.fk-empty {padding:45px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:14px;}
+.fk-workspace {padding:26px;border:1px solid var(--line);border-radius:16px;background:var(--surface);box-shadow:var(--shadow);margin:4px auto 15px;max-width:870px;}
+.fk-back {border:0;background:transparent;color:var(--accent);padding:0;margin:0 0 19px;font-size:13px;font-weight:750;cursor:pointer;}
+.fk-workspace h2 {font-size:26px;letter-spacing:-.04em;margin:0 0 8px;}
+.fk-description {font-size:13px;color:var(--muted);margin:0 0 23px;}
+.fk-field {display:flex;flex-direction:column;gap:7px;margin:12px 0;}
+.fk-field>span,.fk-field>label {font-size:12px;font-weight:750;}
+.fk-file,.fk-textarea,.fk-input {width:100%;border:1px solid var(--line-strong);border-radius:10px;padding:12px;background:var(--surface-soft);color:var(--text);font-size:13px;}
+.fk-textarea {min-height:150px;resize:vertical;line-height:1.6;}
+.fk-actions {display:flex;flex-wrap:wrap;gap:9px;margin:17px 0 12px;align-items:center;}
+.fk-action {min-height:41px;padding:0 16px;border:1px solid var(--accent);background:var(--accent);color:#fff;border-radius:9px;font-weight:760;font-size:13px;cursor:pointer;}
+.fk-action:disabled {opacity:.55;cursor:wait;}
+.fk-action-sub {min-height:41px;padding:0 15px;border:1px solid var(--line);background:var(--surface);color:var(--text);border-radius:9px;font-weight:700;font-size:13px;cursor:pointer;}
+.fk-status {font-size:12px;color:var(--muted);min-height:24px;margin:12px 0;}
+.fk-status[data-error='true'] {color:var(--danger);font-weight:700;}
+.fk-preview-box {border:1px solid var(--line);background:var(--surface-soft);border-radius:10px;min-height:125px;padding:16px;margin:15px 0;text-align:center;}
+.fk-preview-box img {max-height:360px;max-width:100%;object-fit:contain;}
+.fk-preview-box p {font-size:12px;color:var(--muted);margin:8px 0 0;}
+.fk-output {padding:12px;min-height:50px;border:1px solid var(--line);border-radius:10px;background:var(--surface-soft);font-size:13px;white-space:pre-wrap;overflow-wrap:anywhere;max-height:370px;overflow-y:auto;}
+.fk-hint {font-size:11px;color:var(--muted);margin:10px 0;line-height:1.65;}
+.fk-colors {display:flex;flex-wrap:wrap;gap:9px;margin:15px 0;}
+.fk-swatch {width:65px;height:65px;border-radius:9px;border:1px solid var(--line);display:flex;align-items:end;justify-content:center;padding:5px;font-size:9px;color:transparent;}
+.fk-swatch:hover {outline:2px solid var(--accent);outline-offset:2px;}
+.fk-privacy {border-top:1px solid var(--line);padding:20px 0 0;color:var(--muted);font-size:12px;line-height:1.7;}
+.fk-quick {display:flex;gap:8px;flex-wrap:wrap;margin:4px 0 26px;}
+.fk-quick button {border:1px solid var(--line);border-radius:50px;background:var(--surface);padding:7px 12px;font-size:11px;font-weight:700;color:var(--muted);cursor:pointer;}
+.fk-quick button:hover {border-color:var(--accent);color:var(--accent);}
+#fk-classic-root {margin-top:28px;}
+.fk-legacy-caption {margin-bottom:14px;padding:13px 17px;border-radius:10px;background:var(--accent-soft);color:var(--accent);font-size:13px;}
+.fk-dashboard .container {width:100%;}
+@media (max-width:900px){.fk-grid{grid-template-columns:repeat(3,minmax(0,1fr));}.fk-hero{align-items:flex-start}.fk-hero h1{font-size:37px}}
+@media (max-width:620px){.fk-dashboard{padding-top:12px}.fk-hero{padding:22px 0 18px;display:block}.fk-hero h1{font-size:33px}.fk-summary{display:inline-block;margin-top:13px}.fk-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.fk-card{min-height:117px;padding:13px}.fk-card strong{font-size:12px}.fk-card-desc{font-size:10px}.fk-workspace{padding:17px}.fk-group-head h2{font-size:17px}.fk-filter{gap:6px}.fk-filter button{font-size:11px;padding:0 10px;min-height:32px}.fk-workspace h2{font-size:22px}.fk-search{font-size:16px}.main-nav{display:none}}
+@media(max-width:680px){
+  .site-header .header-inner{flex-wrap:nowrap;min-height:60px;padding-top:6px;padding-bottom:6px;gap:8px;}
+  .site-header .header-right{width:auto;margin-left:auto;justify-content:flex-end;}
+  .site-header .theme-toggle{white-space:nowrap;}
+}
+
+#fk-classic-root > section.hero {display:none;}
+  </style>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="Filekit 처음으로">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M7 5.5h10M7 12h7M7 18.5h10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M4 3.8h16v16.4H4z" stroke="currentColor" stroke-width="1.5" opacity=".7"/></svg>
+        </span>
+        <span><span class="brand-name">Filekit</span><span class="brand-caption">브라우저 파일 도구</span></span>
+      </a>
+      <div class="header-right">
+        <nav class="main-nav" aria-label="페이지 탐색">
+          <a href="#workspace">작업</a>
+          <a href="#pdf-tools">PDF 도구</a>
+        <a href="#background-tool">배경 투명화</a>
+        <a href="#emoji-kit">이모지</a>
+        <a href="#features">기능</a>
+          <a href="#how-to">사용법</a>
+          <a href="#faq">도움말</a>
+        </nav>
+        <button id="themeToggle" class="theme-toggle" type="button" aria-pressed="false">다크 모드</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+<div id="fk-dashboard-root" class="container fk-dashboard">
+  <section class="fk-hero" aria-labelledby="fk-title">
+    <div><span class="fk-eyebrow">FILEKIT / WEB UTILITIES</span><h1 id="fk-title">필요한 도구를, 바로.</h1><p class="fk-intro">이미지 변환부터 PDF, 텍스트, 색상까지. 파일을 서버로 보내지 않고 브라우저에서 처리하는 무료 도구 모음입니다.</p></div>
+    <div class="fk-summary"><strong id="fk-tool-count">0</strong>개 도구 · 무료</div>
+  </section>
+  <div id="fk-browser">
+    <div class="fk-toolbar">
+      <div class="fk-search-wrap"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input id="fk-search" class="fk-search" type="search" autocomplete="off" placeholder="도구 검색 — PDF, PNG, 이미지 크기, 텍스트..." aria-label="도구 검색"></div>
+    </div>
+    <div id="fk-categories" class="fk-filter" aria-label="도구 카테고리"></div>
+    <div id="fk-groups" aria-live="polite"></div>
+  </div>
+  <section id="fk-detail" class="fk-workspace" hidden aria-labelledby="fk-tool-title">
+    <button id="fk-back" class="fk-back" type="button">← 모든 도구로 돌아가기</button>
+    <span id="fk-tool-category" class="fk-eyebrow"></span><h2 id="fk-tool-title"></h2><p id="fk-tool-description" class="fk-description"></p>
+    <div id="fk-image-ui" hidden><label class="fk-field"><span>이미지 선택 (최대 25MB)</span><input id="fk-image-input" class="fk-file" type="file" accept="image/png,image/jpeg,image/webp,image/bmp,image/gif,image/avif,.png,.jpg,.jpeg,.webp,.bmp,.gif,.avif"></label><p id="fk-image-note" class="fk-hint">애니메이션 이미지는 첫 프레임만 처리됩니다. 이미지 형식 지원 여부는 브라우저에 따라 다릅니다.</p><div class="fk-actions"><button id="fk-image-run" class="fk-action" type="button">이미지 처리</button><button id="fk-image-download" class="fk-action-sub" type="button" hidden>결과 다운로드 ↓</button></div><div id="fk-image-status" class="fk-status" role="status" aria-live="polite"></div><div id="fk-image-preview" class="fk-preview-box" hidden><img id="fk-image-preview-img" alt="변환 후 이미지 미리보기"><p id="fk-image-result-meta"></p></div></div>
+    <div id="fk-text-ui" hidden><label class="fk-field"><span>입력 텍스트</span><textarea id="fk-text-input" class="fk-textarea" spellcheck="false" placeholder="여기에 텍스트를 입력하거나 붙여넣으세요."></textarea></label><div class="fk-actions"><button id="fk-text-run" class="fk-action" type="button">변환 실행</button><button id="fk-text-copy" class="fk-action-sub" type="button">결과 복사</button><button id="fk-text-download" class="fk-action-sub" type="button">TXT 다운로드</button></div><label class="fk-field"><span>결과</span><textarea id="fk-text-output" class="fk-textarea" readonly aria-live="polite"></textarea></label><div id="fk-text-status" class="fk-status" role="status"></div></div>
+    <div id="fk-color-ui" hidden><label class="fk-field"><span>기준 색상</span><input id="fk-color-input" type="color" value="#356b5b" style="width:100%;max-width:180px;height:48px;border:1px solid var(--line);border-radius:8px;background:var(--surface-soft)"></label><div class="fk-actions"><button id="fk-color-run" class="fk-action" type="button">색상 계산</button><button id="fk-color-copy" class="fk-action-sub" type="button">결과 복사</button></div><div id="fk-color-output" class="fk-output" aria-live="polite"></div><div id="fk-color-swatches" class="fk-colors"></div><p id="fk-color-status" class="fk-status" role="status"></p></div>
+    <div id="fk-file-ui" hidden><label class="fk-field"><span>파일 선택 (최대 25MB)</span><input id="fk-file-input" class="fk-file" type="file"></label><div class="fk-actions"><button id="fk-file-run" class="fk-action" type="button">분석 실행</button><button id="fk-file-copy" class="fk-action-sub" type="button">결과 복사</button></div><pre id="fk-file-output" class="fk-output" aria-live="polite"></pre><p id="fk-file-status" class="fk-status" role="status"></p></div>
+    <p class="fk-hint">이 도구는 기기 안에서 실행됩니다. 처리할 파일을 선택해도 Filekit 서버로 업로드되지 않습니다.</p>
+  </section>
+  <div class="fk-privacy">Filekit v2.0 · 정적 웹사이트로 제공 · 파일 처리 결과는 사용 중인 브라우저와 기기 성능에 따라 달라질 수 있습니다.</div>
+</div>
+<div id="fk-classic-root" hidden><div class="container"><p class="fk-legacy-caption">기존 Filekit의 고급 작업 화면입니다. <button class="fk-back" type="button" id="fk-classic-back" style="margin:0 0 0 8px">← 전체 도구 보기</button></p></div>
+
+    <section class="container hero" aria-labelledby="page-title">
+      <div class="hero-content">
+        <p class="eyebrow">이미지 도구</p>
+        <h1 id="page-title">이미지 압축과 변환</h1>
+        <p class="hero-copy">JPG, PNG, WebP 이미지의 용량과 크기를 조정하고 형식을 바꿉니다. 목표 용량 모드에서는 실제 결과 크기로 달성 여부를 확인합니다.</p>
+      </div>
+    </section>
+
+    <div class="container">
+      <section id="workspace" class="workbench" aria-labelledby="workspace-heading">
+        <div class="workbench-heading">
+          <div>
+            <p class="eyebrow">작업</p>
+            <h2 id="workspace-heading">파일 추가</h2>
+          </div>
+          <p class="privacy-note">파일은 이 브라우저에서 처리하며 서버로 보내지 않습니다.</p>
+        </div>
+
+
+        <div id="dropzone" class="dropzone" role="button" tabindex="0" aria-label="이미지 파일을 끌어다 놓거나 Enter 또는 Space를 눌러 파일 선택">
+          <svg class="upload-icon" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M16 21V5m0 0-6 6m6-6 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 19v6a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <p class="dropzone-title">이미지를 여기로 끌어다 놓으세요</p>
+          <p class="dropzone-hint">JPG, PNG, WebP 정지 이미지 · 파일당 최대 50MB · 한 번에 최대 30개</p>
+        </div>
+        <div class="upload-actions">
+          <button id="chooseFiles" class="button button-secondary" type="button">파일 선택</button>
+          <input id="fileInput" class="file-input-hidden" type="file" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp" multiple tabindex="-1" aria-label="JPG, PNG 또는 WebP 파일 선택">
+        </div>
+
+        <fieldset id="settingsFieldset" class="settings-fieldset">
+          <legend class="sr-only">이미지 처리 설정</legend>
+          <div class="settings-grid">
+            <section id="compress-settings" class="setting-card" aria-labelledby="compress-heading">
+              <div class="setting-heading">
+                <div><h3 id="compress-heading">압축 방식</h3><p>품질이나 목표 용량을 선택합니다.</p></div>
+              </div>
+              <div class="mode-options" role="radiogroup" aria-label="압축 방식 선택">
+                <label class="mode-option"><input id="modeQuality" type="radio" name="compressionMode" value="quality" checked><span>품질 지정</span></label>
+                <label class="mode-option"><input id="modeTarget" type="radio" name="compressionMode" value="target"><span>목표 용량</span></label>
+              </div>
+              <div>
+                <label id="qualityLabel" class="control-label" for="qualityRange"><span>이미지 품질</span><span id="qualityValue" class="control-value">82%</span></label>
+                <input id="qualityRange" type="range" min="10" max="100" step="1" value="82" aria-describedby="qualityHelp">
+                <div class="range-scale" aria-hidden="true"><span>낮은 용량</span><span>높은 품질</span></div>
+                <p id="qualityHelp" class="field-help">JPEG와 WebP 인코딩 품질을 조절합니다. 결과 크기는 이미지 내용과 브라우저 인코더에 따라 달라집니다.</p>
+              </div>
+              <div id="targetPanel" class="target-panel" hidden>
+                <label class="control-label" for="targetKB"><span>목표 파일 크기</span></label>
+                <div class="input-with-unit"><input id="targetKB" class="number-field" type="number" min="1" max="102400" step="1" value="500" inputmode="numeric" aria-describedby="targetHelp" aria-invalid="false"><span class="input-unit">KB</span></div>
+                <p id="targetHelp" class="field-help">브라우저가 만든 파일 크기로 달성 여부를 판정합니다. 목표를 넘으면 실제 용량과 ‘목표 미달’을 표시합니다.</p>
+                <label class="check-row"><input id="autoDownscale" type="checkbox" checked><span>품질로 부족하면 이미지 크기도 자동 축소</span></label>
+              </div>
+            </section>
+
+            <section id="format-settings" class="setting-card" aria-labelledby="format-heading">
+              <div class="setting-heading">
+                <div><h3 id="format-heading">출력 형식</h3><p>저장할 파일 형식을 선택합니다.</p></div>
+              </div>
+              <div class="format-select-wrap">
+                <label class="control-label" for="formatSelect"><span>저장 형식</span></label>
+                <select id="formatSelect" class="select-field">
+                  <option value="image/webp">WebP</option>
+                  <option value="image/jpeg">JPG (JPEG)</option>
+                  <option value="image/png">PNG</option>
+                  <option value="original">원본 형식 유지</option>
+                </select>
+              </div>
+              <p class="field-help">JPG, PNG, WebP 중에서 저장 형식을 고르세요.</p>
+              <p id="formatSupportNote" class="capability-note" role="status">이 브라우저에서 저장할 수 있는 형식을 확인 중입니다.</p>
+              <p class="field-help">JPG로 저장하면 투명한 부분은 흰색으로 채워집니다.</p>
+            </section>
+
+            <section id="resize-settings" class="setting-card" aria-labelledby="resize-heading">
+              <div class="setting-heading">
+                <div><h3 id="resize-heading">크기 변경</h3><p>원본 유지, 비율, 픽셀 크기 중 선택합니다.</p></div>
+              </div>
+              <label class="control-label" for="resizeMode"><span>변경 방식</span></label>
+              <select id="resizeMode" class="select-field">
+                <option value="original">원본 크기 유지</option>
+                <option value="percent">비율로 변경</option>
+                <option value="custom">픽셀로 지정</option>
+              </select>
+              <div id="percentControl" class="size-controls" hidden>
+                <label class="control-label" for="resizePercent"><span>원본 대비 크기</span></label>
+                <div class="input-with-unit"><input id="resizePercent" class="number-field" type="number" min="1" max="500" step="1" value="50" inputmode="numeric" aria-describedby="resizePercentHelp" aria-invalid="false"><span class="input-unit">%</span></div>
+                <p id="resizePercentHelp" class="field-help">가로와 세로에 같은 비율을 적용합니다. 100%보다 크게 설정하면 확대됩니다.</p>
+              </div>
+              <div id="customControl" class="size-controls" hidden>
+                <label class="control-label" for="resizeWidth"><span>출력 크기</span><span class="input-unit">픽셀</span></label>
+                <div class="dimension-row">
+                  <input id="resizeWidth" class="number-field" type="number" min="1" max="20000" step="1" value="1600" inputmode="numeric" aria-label="출력 너비 픽셀" aria-describedby="resizeDimensionsHelp" aria-invalid="false">
+                  <span class="dimension-x" aria-hidden="true">×</span>
+                  <input id="resizeHeight" class="number-field" type="number" min="1" max="20000" step="1" value="1200" inputmode="numeric" aria-label="출력 높이 픽셀" aria-describedby="resizeDimensionsHelp" aria-invalid="false">
+                </div>
+                <label class="check-row"><input id="preserveRatio" type="checkbox" checked><span>비율 유지 (입력값 안에 맞춤)</span></label>
+                <p id="resizeDimensionsHelp" class="field-help">비율 유지 시 입력한 가로·세로를 경계로 사용해 이미지 전체가 들어오도록 조정합니다.</p>
+              </div>
+            </section>
+          </div>
+        </fieldset>
+
+        <div id="globalNotice" class="notice" role="status" aria-live="polite" hidden></div>
+        <div class="run-toolbar">
+          <p id="selectionSummary" class="selection-summary">파일을 추가하면 처리 가능한 형식과 선택 개수를 확인합니다.</p>
+          <div class="toolbar-actions">
+            <button id="clearQueue" class="button button-quiet" type="button" disabled>전체 비우기</button>
+            <button id="processButton" class="button button-primary" type="button" disabled>이미지 처리 시작</button>
+            <button id="cancelButton" class="button button-secondary" type="button" hidden>처리 취소</button>
+          </div>
+        </div>
+        <div id="progressPanel" class="progress-panel" hidden>
+          <div class="progress-top">
+            <div><p id="progressTitle" class="progress-title" role="status" aria-live="polite">이미지를 처리하고 있습니다.</p><p id="progressDetail" class="progress-detail">화면을 닫지 마세요.</p></div>
+            <span id="progressCount" class="progress-count">0 / 0</span>
+          </div>
+          <progress id="progressBar" max="1" value="0" aria-label="일괄 처리 진행률"></progress>
+        </div>
+
+        <section class="queue-section" aria-labelledby="queue-heading">
+          <div class="queue-header">
+            <div class="queue-title-block">
+              <h3 id="queue-heading">작업 파일 <span id="queueCount" class="queue-count">0</span></h3>
+              <p id="queueSummary" class="queue-summary" aria-live="polite">파일이 아직 없습니다.</p>
+            </div>
+            <button id="downloadZipButton" class="button button-secondary zip-button" type="button" disabled hidden>완료 파일 ZIP 다운로드</button>
+          </div>
+          <p id="zipHint" class="zip-hint" hidden aria-live="polite"></p>
+          <div id="emptyState" class="empty-state"><strong>처리할 이미지가 없습니다.</strong>위에서 파일을 선택하거나 이 영역에 끌어다 놓으세요.</div>
+          <div id="fileList" class="file-list"></div>
+        </section>
+      </section>
+
+      <!-- 광고 코드를 정식으로 적용하고 적절한 고지를 완료하기 전까지 광고 영역을 숨깁니다. -->
+      <aside id="adArea" class="ad-slot" aria-label="광고" hidden>
+        <span class="ad-slot-label">광고</span>
+        <div id="adsterraBannerSlot" class="ad-slot-content"></div>
+      </aside>
+
+
+      <section id="pdf-tools" class="tool-block" aria-labelledby="pdf-heading">
+        <p class="eyebrow">PDF 도구</p>
+        <h2 id="pdf-heading">PDF 합치기 · 페이지 추출 · 회전</h2>
+        <p class="muted">PDF 파일을 병합하거나 원하는 페이지만 남겨 새 PDF로 저장하세요. 여러 이미지를 PDF 한 개로 만들 수도 있습니다. 파일은 브라우저에서 처리합니다.</p>
+        <div class="kit-controls">
+          <label for="pdfAction">실행할 작업
+            <select id="pdfAction"><option value="merge">PDF 파일 합치기</option><option value="extract">PDF 페이지 추출</option><option value="rotate">PDF 페이지 회전</option><option value="images">이미지를 PDF로 변환</option></select>
+          </label>
+          <label id="pdfRangeWrap" for="pdfRange" hidden>추출할 페이지 (예: 1-3,5)
+            <input id="pdfRange" type="text" value="1" inputmode="text" autocomplete="off" spellcheck="false" placeholder="1-3,5" maxlength="120">
+          </label>
+          <label id="pdfRotationWrap" for="pdfRotation" hidden>회전 각도
+            <select id="pdfRotation"><option value="90">오른쪽 90°</option><option value="180">180°</option><option value="270">왼쪽 90°</option></select>
+          </label>
+        </div>
+        <label for="pdfInput" class="control-label">작업할 파일 선택</label>
+        <input id="pdfInput" class="kit-input" type="file" accept=".pdf,application/pdf" multiple aria-describedby="pdfLimit">
+        <p id="pdfLimit" class="muted">여러 PDF를 합칠 때는 파일 선택 순서대로 배치됩니다. 파일당 25MB, 합계 80MB까지 지원하며 암호화된 PDF는 처리할 수 없습니다.</p>
+        <div class="kit-actions"><button id="pdfRun" class="button button-primary" type="button">PDF 작업 시작</button></div>
+        <div id="pdfStatus" class="kit-result" role="status" aria-live="polite">PDF 기능은 실행할 때 pdf-lib 라이브러리를 불러옵니다. 인터넷 연결이 필요합니다.</div>
+      </section>
+
+      <section id="background-tool" class="tool-block" aria-labelledby="bg-heading">
+        <p class="eyebrow">이미지 도구</p>
+        <h2 id="bg-heading">단색 배경 투명화</h2>
+        <p class="muted">하얀색 배경이나 비슷한 단색 배경을 투명하게 만듭니다. 이미지 모서리 색을 기준으로 연결된 배경을 제거합니다. 복잡한 사진의 인물·머리카락을 구분하는 AI 배경 제거는 아닙니다.</p>
+        <label for="bgInput" class="control-label">이미지 선택 (JPG·PNG·WebP)</label>
+        <input id="bgInput" class="kit-input" type="file" accept="image/jpeg,image/png,image/webp,.jpg,.jpeg,.png,.webp">
+        <div class="kit-controls">
+          <label for="bgTolerance">색상 허용 차이 <span id="bgToleranceValue">40</span>
+            <input id="bgTolerance" type="range" min="5" max="110" step="5" value="40">
+          </label>
+        </div>
+        <div class="kit-actions"><button id="bgRun" class="button button-primary" type="button">배경 제거 후 PNG 저장</button></div>
+        <div id="bgStatus" class="kit-result" role="status" aria-live="polite">처리할 이미지를 선택하세요. 결과는 투명 PNG로 저장됩니다.</div>
+        <div id="bgPreview" class="kit-bg-preview" hidden>
+          <figure><img id="bgBefore" alt="배경 투명화 전"><figcaption>원본</figcaption></figure>
+          <figure><img id="bgAfter" alt="배경 투명화 결과"><figcaption>배경 제거 후</figcaption></figure>
+        </div>
+      </section>
+
+      <section id="emoji-kit" class="tool-block" aria-labelledby="emoji-heading">
+        <p class="eyebrow">문자 도구</p>
+        <h2 id="emoji-heading">이모지 검색 · 복사</h2>
+        <p class="muted">이모지를 검색한 뒤 누르면 복사됩니다. 복사한 문자는 메신저나 문서에 붙여넣을 수 있습니다.</p>
+        <label class="control-label" for="emojiSearch">이름으로 검색</label>
+        <input id="emojiSearch" class="kit-search kit-emoji-search" type="search" placeholder="예: 하트, 축하, 고양이" autocomplete="off">
+        <div id="emojiGrid" class="kit-emoji-grid" aria-label="이모지 목록"></div>
+        <div id="emojiStatus" class="kit-result" role="status" aria-live="polite">이모지를 누르면 복사됩니다.</div>
+      </section>
+
+      <section id="features" class="content-section" aria-labelledby="features-heading">
+        <p class="eyebrow">기능</p>
+        <h2 id="features-heading" class="section-title">압축, 변환, 크기 조정</h2>
+        <p class="section-intro">같은 옵션으로 여러 이미지를 한 번에 처리하고 결과는 파일별로 확인할 수 있습니다.</p>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <span class="feature-index">압축</span>
+            <h3>사진 용량 줄이기</h3>
+            <p>JPEG·WebP 품질을 조절하거나 목표 용량을 지정하세요. 필요하면 용량을 맞추기 위해 이미지 크기를 낮출 수 있습니다.</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-index">변환</span>
+            <h3>JPG·PNG·WebP 형식 변환</h3>
+            <p>JPG를 PNG로, WebP를 JPG로 저장할 수 있습니다. 브라우저가 지원하는 출력 형식만 선택 목록에 표시합니다. JPG로 바꾸면 투명한 부분은 흰색으로 채웁니다.</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-index">크기</span>
+            <h3>이미지 크기 변경</h3>
+            <p>원본 대비 비율이나 출력 픽셀을 지정할 수 있습니다. 픽셀 지정 시 가로세로 비율을 유지할 수도 있습니다.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="how-to" class="content-section" aria-labelledby="how-heading">
+        <p class="eyebrow">사용법</p>
+        <h2 id="how-heading" class="section-title">파일을 추가하고 옵션을 정하세요</h2>
+        <p class="how-copy">JPG·PNG·WebP 파일을 추가하고 품질이나 목표 용량, 저장 형식, 크기를 정합니다. 처리 후에는 원본과 결과의 실제 용량을 비교한 뒤 파일별로 받거나 ZIP으로 묶어 저장하세요. 목표에 못 미치면 결과 크기와 이유를 표시합니다.</p>
+      </section>
+
+      <section id="faq" class="content-section" aria-labelledby="faq-heading">
+        <p class="eyebrow">도움말</p>
+        <h2 id="faq-heading" class="section-title">자주 묻는 질문</h2>
+        <div class="faq-list">
+          <details>
+            <summary>파일이 서버로 업로드되나요?</summary>
+            <p>아니요. 파일은 이 브라우저에서 처리하며 서버로 전송하지 않습니다. 목록을 비우거나 페이지를 닫으면 미리보기와 결과 URL도 해제됩니다.</p>
+          </details>
+          <details>
+            <summary>목표 용량을 항상 맞출 수 있나요?</summary>
+            <p>목표 달성 여부는 실제 결과 파일 크기로 판정합니다. 맞추지 못하면 실제 용량과 ‘목표 미달’을 표시합니다. 자동 크기 축소를 켜면 해상도를 낮춰 다시 시도합니다.</p>
+          </details>
+          <details>
+            <summary>사진을 1MB 이하로 줄일 수 있나요?</summary>
+            <p>목표 용량에 1,024KB를 입력하면 됩니다. 모든 이미지가 목표에 도달하는 것은 아니며, 자동 크기 축소를 켜면 해상도를 낮춰 다시 시도합니다.</p>
+          </details>
+          <details>
+            <summary>ZIP에는 어떤 결과가 들어가나요?</summary>
+            <p>현재 설정으로 완료된 결과만 묶습니다. ZIP 자체에서 이미지를 다시 압축하지 않으며, 파일당 40MB·전체 50MB를 넘으면 개별 다운로드를 이용해 주세요.</p>
+          </details>
+          <details>
+            <summary>PNG의 품질 설정은 왜 적용되지 않나요?</summary>
+            <p>PNG는 무손실 형식이라 품질 값을 적용할 수 없습니다. 용량을 줄이려면 크기를 낮추거나 JPG·WebP로 변환하세요.</p>
+          </details>
+          <details>
+            <summary>원본 메타데이터와 투명도는 보존되나요?</summary>
+            <p>EXIF 등 원본 메타데이터는 보존되지 않습니다. PNG와 WebP의 투명도는 유지하고, JPG의 투명 영역은 흰색으로 채웁니다.</p>
+          </details>
+          <details>
+            <summary>애니메이션 PNG 또는 WebP도 처리할 수 있나요?</summary>
+            <p>지원하지 않습니다. 애니메이션을 한 장의 이미지로 바꾸지 않도록 파일 추가 단계에서 안내합니다.</p>
+          </details>
+          <details>
+            <summary>완료 결과를 얼마나 보관하나요?</summary>
+            <p>결과는 탭을 닫을 때까지 브라우저 메모리에 보관하며, 합계 128MB를 넘기지 않습니다. 한도를 넘는 결과는 파일별 오류로 표시됩니다. 다른 결과를 비우거나 출력 크기를 낮춰 다시 처리해 주세요.</p>
+          </details>
+          <details>
+            <summary>일부 큰 이미지가 처리되지 않을 수 있나요?</summary>
+            <p>파일당 50MB, 입력 5천만 픽셀, 출력 한 변 16,000픽셀·총 2,400만 픽셀까지 처리합니다. 여러 파일은 한 장씩 처리합니다. 큰 이미지에서는 브라우저 응답이 잠시 늦어질 수 있으며, 메모리 부족이나 인코딩 오류가 생기면 해당 파일에 오류를 표시하고 다음 파일로 넘어갑니다.</p>
+          </details>
+        </div>
+      </section>
+
+      <section class="content-section" aria-labelledby="privacy-heading">
+        <p class="eyebrow">개인정보와 광고</p>
+        <h2 id="privacy-heading" class="section-title">파일은 업로드되지 않습니다</h2>
+        <p class="section-intro">이미지는 브라우저에서 처리하며 외부로 전송하지 않습니다. 다크 모드 선택만 이 브라우저의 저장소에 기억합니다. 광고·분석 스크립트는 아직 없습니다. Adsterra를 추가하기 전 허용 형식과 개인정보 고지를 확인해 주세요.</p>
+      </section>
+    </div>
+  </div><!-- /fk-classic-root -->
+  </main>
+
+  <dialog id="compareDialog" class="compare-dialog" aria-labelledby="compareTitle" aria-modal="true">
+    <div class="compare-dialog-inner">
+      <div class="compare-dialog-header">
+        <div>
+          <h2 id="compareTitle">처리 전후 비교</h2>
+          <p id="compareFileName" class="compare-file-name"></p>
+        </div>
+        <button id="closeCompareButton" class="button button-quiet" type="button" aria-label="비교 창 닫기">닫기</button>
+      </div>
+      <div class="compare-images">
+        <figure class="compare-figure">
+          <div class="compare-frame"><img id="compareBeforeImage" alt="처리 전 원본 이미지"></div>
+          <figcaption><strong>원본</strong><span id="compareBeforeMeta"></span></figcaption>
+        </figure>
+        <figure class="compare-figure">
+          <div class="compare-frame"><img id="compareAfterImage" alt="처리 후 이미지"></div>
+          <figcaption><strong>처리 결과</strong><span id="compareAfterMeta"></span></figcaption>
+        </figure>
+      </div>
+      <p class="compare-dialog-note">두 이미지는 각각 영역에 맞춰 표시합니다. 실제 파일 크기와 출력 크기는 아래 정보에서 확인할 수 있습니다.</p>
+    </div>
+  </dialog>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <p class="footer-brand">Filekit <span style="font-weight:500;color:var(--muted)">v2.0</span></p>
+        <p class="footer-copy">파일은 브라우저에서 처리합니다. 처리 결과가 필요한 용도에 맞는지 확인하고, 중요한 원본은 따로 보관해 주세요.</p>
+      </div>
+      <div class="footer-meta">JPG · PNG · WebP · PDF<br>브라우저 내 처리</div>
+    </div>
+  </footer>
+
+  <noscript><div class="container notice" role="alert">Filekit의 이미지 처리 기능을 사용하려면 브라우저에서 JavaScript를 활성화해야 합니다.</div></noscript>
+
+  <script>
+    (() => {
+      'use strict';
+
+      // 배포 준비 도구에서 canonical, og:url 및 JSON-LD URL을 정적 HTML에 설정합니다.
+      // JavaScript 실행 중에는 URL 관련 메타데이터를 변경하지 않습니다.
+      const SEO_CONFIG = Object.freeze({
+        title: 'Filekit | 이미지·PDF·텍스트·색상 무료 도구 100개 이상',
+        description: '이미지 변환·압축·크기 변경·필터, PDF 합치기, 텍스트·색상 변환 등 100개 이상의 파일 유틸리티를 브라우저에서 무료로 사용하세요.'
+      });
+      const MAX_FILES = 30;
+      const RENDER_CHUNK_SIZE = 4;
+      const MAX_ZIP_BYTES = 50 * 1024 * 1024;
+      const MAX_ZIP_ENTRY_BYTES = 40 * 1024 * 1024;
+      const MAX_STORED_RESULT_BYTES = 128 * 1024 * 1024;
+      const MAX_FILE_BYTES = 50 * 1024 * 1024;
+      const MAX_SOURCE_PIXELS = 50_000_000;
+      const MAX_OUTPUT_PIXELS = 24_000_000;
+      const MAX_OUTPUT_SIDE = 16_000;
+      const TARGET_SEARCH_STEPS = 8;
+      const QUALITY_SEARCH_STEPS = 6;
+
+      const MIME_INFO = {
+        'image/jpeg': { label: 'JPG', longLabel: 'JPEG', extension: 'jpg' },
+        'image/png': { label: 'PNG', longLabel: 'PNG', extension: 'png' },
+        'image/webp': { label: 'WebP', longLabel: 'WebP', extension: 'webp' }
+      };
+
+      const $ = (id) => document.getElementById(id);
+      const themeToggle = $('themeToggle');
+      const fileInput = $('fileInput');
+      const chooseButton = $('chooseFiles');
+      const dropzone = $('dropzone');
+      const settingsFieldset = $('settingsFieldset');
+      const formatSelect = $('formatSelect');
+      const qualityRange = $('qualityRange');
+      const qualityValue = $('qualityValue');
+      const qualityLabel = $('qualityLabel');
+      const qualityHelp = $('qualityHelp');
+      const targetPanel = $('targetPanel');
+      const resizeMode = $('resizeMode');
+      const percentControl = $('percentControl');
+      const customControl = $('customControl');
+      const processButton = $('processButton');
+      const cancelButton = $('cancelButton');
+      const clearQueueButton = $('clearQueue');
+      const progressPanel = $('progressPanel');
+      const progressBar = $('progressBar');
+      const progressTitle = $('progressTitle');
+      const progressDetail = $('progressDetail');
+      const progressCount = $('progressCount');
+      const globalNotice = $('globalNotice');
+      const fileList = $('fileList');
+      const emptyState = $('emptyState');
+      const queueCount = $('queueCount');
+      const queueSummary = $('queueSummary');
+      const selectionSummary = $('selectionSummary');
+      const formatSupportNote = $('formatSupportNote');
+      const downloadZipButton = $('downloadZipButton');
+      const zipHint = $('zipHint');
+      const compareDialog = $('compareDialog');
+      const closeCompareButton = $('closeCompareButton');
+      const compareFileName = $('compareFileName');
+      const compareBeforeImage = $('compareBeforeImage');
+      const compareAfterImage = $('compareAfterImage');
+      const compareBeforeMeta = $('compareBeforeMeta');
+      const compareAfterMeta = $('compareAfterMeta');
+
+      let jobs = [];
+      let nextJobId = 1;
+      let isProcessing = false;
+      let isZipping = false;
+      let isCheckingFiles = false;
+      let cancelRequested = false;
+      let zipCancelRequested = false;
+      let activeZipUrl = null;
+      let activeZipTimer = 0;
+      let currentCompareJobId = null;
+      let compareReturnFocus = null;
+      let capabilities = { 'image/jpeg': false, 'image/png': false, 'image/webp': false };
+      let initialized = false;
+      let lastSettingsKey = '';
+      let noticeTimer = 0;
+
+      class CancelledError extends Error {
+        constructor() { super('처리가 취소되었습니다.'); this.name = 'CancelledError'; }
+      }
+      class ZipCancelledError extends Error {
+        constructor() { super('ZIP 생성을 취소했습니다.'); this.name = 'ZipCancelledError'; }
+      }
+
+      function isBusy() { return isProcessing || isZipping; }
+      function isUiLocked() { return isBusy() || isCheckingFiles; }
+
+      function setTheme(theme, persist) {
+        const actual = theme === 'dark' ? 'dark' : 'light';
+        document.documentElement.dataset.theme = actual;
+        themeToggle.textContent = actual === 'dark' ? '라이트 모드' : '다크 모드';
+        themeToggle.setAttribute('aria-label', actual === 'dark' ? '라이트 모드로 전환' : '다크 모드로 전환');
+        themeToggle.setAttribute('aria-pressed', actual === 'dark' ? 'true' : 'false');
+        const themeColor = document.querySelector('meta[name="theme-color"]');
+        if (themeColor) themeColor.setAttribute('content', actual === 'dark' ? '#121713' : '#f5f6f2');
+        if (persist) {
+          try { localStorage.setItem('filekit-theme', actual); } catch (_) { /* 저장소를 사용할 수 없는 환경에서는 현재 화면에만 적용합니다. */ }
+        }
+      }
+
+      function initializeTheme() {
+        let stored = '';
+        try { stored = localStorage.getItem('filekit-theme') || ''; } catch (_) { /* 비공개 브라우징 등에서는 기본 테마를 사용합니다. */ }
+        const prefersDark = typeof window.matchMedia === 'function' && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        setTheme(stored === 'dark' || stored === 'light' ? stored : (prefersDark ? 'dark' : 'light'), false);
+      }
+
+      function setMetaContent(selector, value) {
+        const meta = document.querySelector(selector);
+        if (meta) meta.setAttribute('content', value);
+      }
+
+      function configureSeoMetadata() {
+        document.title = SEO_CONFIG.title;
+        setMetaContent('meta[name="description"]', SEO_CONFIG.description);
+        setMetaContent('meta[property="og:title"]', SEO_CONFIG.title);
+        setMetaContent('meta[property="og:description"]', SEO_CONFIG.description);
+
+        const schemaElement = $('softwareApplicationSchema');
+        if (schemaElement) {
+          try {
+            const schema = JSON.parse(schemaElement.textContent || '{}');
+            schema.description = SEO_CONFIG.description;
+            schemaElement.textContent = JSON.stringify(schema);
+          } catch (_) { /* JSON-LD가 잘못되면 원본 HTML의 정적 데이터를 유지합니다. */ }
+        }
+      }
+
+      function showNotice(message, kind = 'info', keep = false) {
+        window.clearTimeout(noticeTimer);
+        globalNotice.textContent = message;
+        globalNotice.dataset.kind = kind;
+        globalNotice.hidden = false;
+        if (!keep) {
+          noticeTimer = window.setTimeout(() => { globalNotice.hidden = true; }, 7000);
+        }
+      }
+
+      function formatBytes(bytes) {
+        if (!Number.isFinite(bytes) || bytes < 0) return '—';
+        if (bytes < 1024) return `${bytes} B`;
+        if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(2)} KB`;
+        return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
+      }
+
+      function formatDimensions(width, height) {
+        return Number.isFinite(width) && Number.isFinite(height) && width > 0 && height > 0 ? `${width.toLocaleString('ko-KR')} × ${height.toLocaleString('ko-KR')} px` : '';
+      }
+
+      function formatPercent(value) {
+        if (value < 0.1) return '<0.1';
+        return value >= 10 ? String(Math.round(value)) : value.toFixed(1);
+      }
+
+      function safeFilename(name) {
+        const withoutExtension = String(name || '').replace(/\.[^.]*$/, '');
+        const cleaned = withoutExtension.replace(/[\\/\0-\x1f<>:"|?*]/g, '_').trim().replace(/[. ]+$/g, '');
+        return cleaned || '이미지';
+      }
+
+      function outputFilename(job) {
+        const info = MIME_INFO[job.outputMime];
+        return `${safeFilename(job.file.name)}-filekit.${info ? info.extension : 'bin'}`;
+      }
+
+      function uniqueZipFilenames(outputJobs) {
+        const used = new Set();
+        return outputJobs.map((job) => {
+          const original = outputFilename(job);
+          const dot = original.lastIndexOf('.');
+          const base = dot > 0 ? original.slice(0, dot) : original;
+          const extension = dot > 0 ? original.slice(dot) : '';
+          let candidate = original;
+          let number = 2;
+          while (used.has(candidate.toLocaleLowerCase('ko-KR'))) {
+            candidate = `${base} (${number})${extension}`;
+            number += 1;
+          }
+          used.add(candidate.toLocaleLowerCase('ko-KR'));
+          return candidate;
+        });
+      }
+
+      const CRC32_TABLE = (() => {
+        const table = new Uint32Array(256);
+        for (let n = 0; n < 256; n += 1) {
+          let value = n;
+          for (let k = 0; k < 8; k += 1) value = (value & 1) ? (0xedb88320 ^ (value >>> 1)) : (value >>> 1);
+          table[n] = value >>> 0;
+        }
+        return table;
+      })();
+
+      function updateCrc32(crc, bytes) {
+        let value = crc >>> 0;
+        for (let i = 0; i < bytes.length; i += 1) value = CRC32_TABLE[(value ^ bytes[i]) & 0xff] ^ (value >>> 8);
+        return value >>> 0;
+      }
+
+      function checkZipCancelled() {
+        if (zipCancelRequested) throw new ZipCancelledError();
+      }
+
+      async function crc32Blob(blob, onProgress) {
+        let crc = 0xffffffff;
+        let bytesRead = 0;
+        if (typeof blob.stream === 'function') {
+          const reader = blob.stream().getReader();
+          try {
+            while (true) {
+              checkZipCancelled();
+              const part = await reader.read();
+              if (part.done) break;
+              const chunk = part.value instanceof Uint8Array ? part.value : new Uint8Array(part.value);
+              crc = updateCrc32(crc, chunk);
+              bytesRead += chunk.byteLength;
+              onProgress(bytesRead);
+              await new Promise((resolve) => window.setTimeout(resolve, 0));
+            }
+          } catch (error) {
+            if (zipCancelRequested) {
+              try { await reader.cancel(); } catch (_) { /* 취소 이후 스트림 종료는 best effort입니다. */ }
+              throw new ZipCancelledError();
+            }
+            throw error;
+          } finally {
+            try { reader.releaseLock(); } catch (_) { /* 이미 닫힌 스트림은 무시합니다. */ }
+          }
+        } else {
+          const chunkSize = 1024 * 1024;
+          for (let offset = 0; offset < blob.size; offset += chunkSize) {
+            checkZipCancelled();
+            const buffer = await blob.slice(offset, Math.min(blob.size, offset + chunkSize)).arrayBuffer();
+            const chunk = new Uint8Array(buffer);
+            crc = updateCrc32(crc, chunk);
+            bytesRead += chunk.byteLength;
+            onProgress(bytesRead);
+            await new Promise((resolve) => window.setTimeout(resolve, 0));
+          }
+        }
+        if (bytesRead !== blob.size) throw new Error('ZIP에 넣을 파일을 끝까지 읽지 못했습니다.');
+        return (crc ^ 0xffffffff) >>> 0;
+      }
+
+      function dosDateTime(date) {
+        const year = Math.max(1980, date.getFullYear());
+        const time = (date.getHours() << 11) | (date.getMinutes() << 5) | Math.floor(date.getSeconds() / 2);
+        const day = ((year - 1980) << 9) | ((date.getMonth() + 1) << 5) | date.getDate();
+        return { time, date: day };
+      }
+
+      function createZipLocalHeader(nameBytes, crc, size, stamp) {
+        const bytes = new Uint8Array(30);
+        const view = new DataView(bytes.buffer);
+        view.setUint32(0, 0x04034b50, true);
+        view.setUint16(4, 20, true);
+        view.setUint16(6, 0x0800, true);
+        view.setUint16(8, 0, true);
+        view.setUint16(10, stamp.time, true);
+        view.setUint16(12, stamp.date, true);
+        view.setUint32(14, crc, true);
+        view.setUint32(18, size, true);
+        view.setUint32(22, size, true);
+        view.setUint16(26, nameBytes.length, true);
+        view.setUint16(28, 0, true);
+        return bytes;
+      }
+
+      function createZipCentralHeader(nameBytes, crc, size, localOffset, stamp) {
+        const bytes = new Uint8Array(46);
+        const view = new DataView(bytes.buffer);
+        view.setUint32(0, 0x02014b50, true);
+        view.setUint16(4, 20, true);
+        view.setUint16(6, 20, true);
+        view.setUint16(8, 0x0800, true);
+        view.setUint16(10, 0, true);
+        view.setUint16(12, stamp.time, true);
+        view.setUint16(14, stamp.date, true);
+        view.setUint32(16, crc, true);
+        view.setUint32(20, size, true);
+        view.setUint32(24, size, true);
+        view.setUint16(28, nameBytes.length, true);
+        view.setUint16(30, 0, true);
+        view.setUint16(32, 0, true);
+        view.setUint16(34, 0, true);
+        view.setUint16(36, 0, true);
+        view.setUint32(38, 0, true);
+        view.setUint32(42, localOffset, true);
+        return bytes;
+      }
+
+      function createZipEndRecord(entryCount, centralSize, centralOffset) {
+        const bytes = new Uint8Array(22);
+        const view = new DataView(bytes.buffer);
+        view.setUint32(0, 0x06054b50, true);
+        view.setUint16(4, 0, true);
+        view.setUint16(6, 0, true);
+        view.setUint16(8, entryCount, true);
+        view.setUint16(10, entryCount, true);
+        view.setUint32(12, centralSize, true);
+        view.setUint32(16, centralOffset, true);
+        view.setUint16(20, 0, true);
+        return bytes;
+      }
+
+      function currentSettingsKey() {
+        const selectedMode = document.querySelector('input[name="compressionMode"]:checked');
+        return JSON.stringify({
+          mode: selectedMode ? selectedMode.value : 'quality',
+          format: formatSelect.value,
+          quality: qualityRange.value,
+          targetKB: $('targetKB').value,
+          autoDownscale: $('autoDownscale').checked,
+          resizeMode: resizeMode.value,
+          percent: $('resizePercent').value,
+          width: $('resizeWidth').value,
+          height: $('resizeHeight').value,
+          preserveRatio: $('preserveRatio').checked
+        });
+      }
+
+      function updateModeUi() {
+        const mode = document.querySelector('input[name="compressionMode"]:checked')?.value || 'quality';
+        const targetMode = mode === 'target';
+        targetPanel.hidden = !targetMode;
+        qualityLabel.firstElementChild.textContent = targetMode ? '최대 이미지 품질' : '이미지 품질';
+        updateFormatUi();
+      }
+
+      function updateFormatUi() {
+        const selection = formatSelect.value;
+        const effectiveMime = selection === 'original' ? null : selection;
+        const isPng = effectiveMime === 'image/png';
+        qualityRange.disabled = isPng;
+        if (isPng) {
+          qualityHelp.textContent = 'PNG는 무손실 인코딩이므로 품질 설정이 적용되지 않습니다. 목표 용량 모드에서는 크기 조정으로 용량을 맞출 수 있습니다.';
+        } else if (selection === 'original') {
+          qualityHelp.textContent = '원본 형식 중 JPEG와 WebP에 적용됩니다. PNG는 무손실 인코딩이라 품질 설정을 무시합니다.';
+        } else {
+          qualityHelp.textContent = 'JPEG와 WebP 인코딩 품질을 조절합니다. 결과 크기는 이미지 내용과 브라우저 인코더에 따라 달라집니다.';
+        }
+      }
+
+      function updateResizeUi() {
+        percentControl.hidden = resizeMode.value !== 'percent';
+        customControl.hidden = resizeMode.value !== 'custom';
+      }
+
+      function syncSettingsKey(nextKey) {
+        if (nextKey === lastSettingsKey) return false;
+        lastSettingsKey = nextKey;
+        for (const job of jobs) {
+          if (job.resultBlob) {
+            clearResult(job);
+            job.state = 'stale';
+            job.message = '설정이 변경되었습니다. 다시 처리해 주세요.';
+          }
+        }
+        return true;
+      }
+
+      function handleSettingsChange() {
+        if (isBusy()) return;
+        if (initialized && globalNotice.dataset.kind === 'error') {
+          globalNotice.hidden = true;
+          window.clearTimeout(noticeTimer);
+        }
+        updateModeUi();
+        updateResizeUi();
+        if (syncSettingsKey(currentSettingsKey())) refreshSettingsRows();
+      }
+
+      function readU32BE(view, offset) {
+        if (offset < 0 || offset + 4 > view.byteLength) return 0;
+        return view.getUint32(offset, false);
+      }
+
+      function readJPEGDimensions(bytes) {
+        let offset = 2;
+        const sofMarkers = new Set([0xc0, 0xc1, 0xc2, 0xc3, 0xc5, 0xc6, 0xc7, 0xc9, 0xca, 0xcb, 0xcd, 0xce, 0xcf]);
+        while (offset + 4 < bytes.length) {
+          if (bytes[offset] !== 0xff) { offset += 1; continue; }
+          while (offset < bytes.length && bytes[offset] === 0xff) offset += 1;
+          if (offset >= bytes.length) break;
+          const marker = bytes[offset++];
+          if (marker === 0x00) continue;
+          if (marker === 0xd9 || marker === 0xda) break;
+          if (marker === 0x01 || (marker >= 0xd0 && marker <= 0xd7)) continue;
+          if (offset + 1 >= bytes.length) break;
+          const segmentLength = (bytes[offset] << 8) | bytes[offset + 1];
+          if (segmentLength < 2) break;
+          if (sofMarkers.has(marker) && offset + 7 < bytes.length) {
+            const height = (bytes[offset + 3] << 8) | bytes[offset + 4];
+            const width = (bytes[offset + 5] << 8) | bytes[offset + 6];
+            if (width && height) return { width, height };
+          }
+          offset += segmentLength;
+        }
+        return null;
+      }
+
+      function readPngAnimationFlag(bytes) {
+        if (bytes.length < 8) return false;
+        const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
+        let offset = 8;
+        while (offset + 8 <= bytes.length) {
+          const length = readU32BE(view, offset);
+          const type = String.fromCharCode(bytes[offset + 4], bytes[offset + 5], bytes[offset + 6], bytes[offset + 7]);
+          if (type === 'acTL') return true;
+          if (length > bytes.length - offset - 12) break;
+          offset += 12 + length;
+        }
+        return false;
+      }
+
+      async function readPngAnimationFlagFromFile(file) {
+        let offset = 8;
+        const maxChunks = 10000;
+        for (let count = 0; count < maxChunks && offset + 8 <= file.size; count += 1) {
+          const buffer = await file.slice(offset, offset + 8).arrayBuffer();
+          if (buffer.byteLength !== 8) return null;
+          const bytes = new Uint8Array(buffer);
+          const view = new DataView(buffer);
+          const length = readU32BE(view, 0);
+          const type = String.fromCharCode(bytes[4], bytes[5], bytes[6], bytes[7]);
+          if (type === 'acTL') return true;
+          if (type === 'IDAT' || type === 'IEND') return false;
+          if (length > file.size - offset - 12) return null;
+          offset += 12 + length;
+        }
+        return offset >= file.size ? false : null;
+      }
+
+      function readWebPDimensions(bytes) {
+        if (bytes.length < 30) return null;
+        const fourCC = String.fromCharCode(bytes[12], bytes[13], bytes[14], bytes[15]);
+        if (fourCC === 'VP8X') {
+          const width = 1 + bytes[24] + (bytes[25] << 8) + (bytes[26] << 16);
+          const height = 1 + bytes[27] + (bytes[28] << 8) + (bytes[29] << 16);
+          return width && height ? { width, height } : null;
+        }
+        if (fourCC === 'VP8L' && bytes[20] === 0x2f) {
+          const b0 = bytes[21], b1 = bytes[22], b2 = bytes[23], b3 = bytes[24];
+          const width = 1 + (((b1 & 0x3f) << 8) | b0);
+          const height = 1 + (((b3 & 0x0f) << 10) | (b2 << 2) | ((b1 & 0xc0) >> 6));
+          return width && height ? { width, height } : null;
+        }
+        if (fourCC === 'VP8 ' && bytes[23] === 0x9d && bytes[24] === 0x01 && bytes[25] === 0x2a) {
+          const width = bytes[26] | ((bytes[27] & 0x3f) << 8);
+          const height = bytes[28] | ((bytes[29] & 0x3f) << 8);
+          return width && height ? { width, height } : null;
+        }
+        return null;
+      }
+
+      async function inspectImageFile(file) {
+        if (!file || !Number.isFinite(file.size)) return { error: '파일을 읽을 수 없습니다.' };
+        if (file.size === 0) return { error: '빈 파일은 처리할 수 없습니다.' };
+        if (file.size > MAX_FILE_BYTES) return { error: '파일 크기가 50MB를 넘습니다. 더 작은 파일을 선택해 주세요.' };
+        let bytes;
+        try {
+          const buffer = await file.slice(0, Math.min(file.size, 1024 * 1024)).arrayBuffer();
+          bytes = new Uint8Array(buffer);
+        } catch (_) {
+          return { error: '파일 내용을 확인하지 못했습니다. 다시 선택해 주세요.' };
+        }
+        let mime = null;
+        let dimensions = null;
+        let animated = false;
+        if (bytes.length >= 8 && bytes[0] === 0x89 && bytes[1] === 0x50 && bytes[2] === 0x4e && bytes[3] === 0x47 && bytes[4] === 0x0d && bytes[5] === 0x0a && bytes[6] === 0x1a && bytes[7] === 0x0a) {
+          mime = 'image/png';
+          animated = readPngAnimationFlag(bytes);
+          if (!animated) {
+            try {
+              const animationFlag = await readPngAnimationFlagFromFile(file);
+              if (animationFlag === null) return { error: 'PNG 파일 구조를 확인하지 못했습니다. 파일이 손상되었는지 확인해 주세요.', mime };
+              animated = animationFlag;
+            } catch (_) {
+              return { error: 'PNG 파일 구조를 읽지 못했습니다. 다시 선택해 주세요.', mime };
+            }
+          }
+          if (bytes.length >= 24) {
+            const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
+            const width = readU32BE(view, 16);
+            const height = readU32BE(view, 20);
+            if (width && height) dimensions = { width, height };
+          }
+        } else if (bytes.length >= 3 && bytes[0] === 0xff && bytes[1] === 0xd8 && bytes[2] === 0xff) {
+          mime = 'image/jpeg';
+          dimensions = readJPEGDimensions(bytes);
+        } else if (bytes.length >= 12 && bytes[0] === 0x52 && bytes[1] === 0x49 && bytes[2] === 0x46 && bytes[3] === 0x46 && bytes[8] === 0x57 && bytes[9] === 0x45 && bytes[10] === 0x42 && bytes[11] === 0x50) {
+          mime = 'image/webp';
+          dimensions = readWebPDimensions(bytes);
+          animated = bytes.length >= 21 && String.fromCharCode(bytes[12], bytes[13], bytes[14], bytes[15]) === 'VP8X' && (bytes[20] & 0x02) !== 0;
+        }
+        if (!mime) return { error: '지원되지 않는 파일입니다. JPG, PNG 또는 WebP 이미지를 선택해 주세요.' };
+        if (dimensions && dimensions.width * dimensions.height > MAX_SOURCE_PIXELS) {
+          return { error: '이미지 해상도가 5천만 픽셀을 넘습니다. 더 작은 원본을 선택해 주세요.', mime, dimensions };
+        }
+        if (animated) return { error: '애니메이션 PNG(APNG)와 애니메이션 WebP는 정지 이미지로 변환될 수 있어 지원하지 않습니다.', dimensions };
+        return { mime, dimensions };
+      }
+
+      async function addFiles(fileListLike) {
+        if (isUiLocked()) {
+          showNotice(isCheckingFiles ? '파일 확인이 끝난 뒤 추가로 선택해 주세요.' : '현재 작업이 끝난 뒤 파일을 추가해 주세요.', 'warning');
+          return;
+        }
+        const incoming = Array.from(fileListLike || []);
+        if (incoming.length === 0) return;
+        const available = Math.max(0, MAX_FILES - jobs.length);
+        if (available === 0) {
+          showNotice(`작업 목록에는 최대 ${MAX_FILES}개까지 추가할 수 있습니다. 먼저 일부 파일을 제거해 주세요.`, 'warning');
+          return;
+        }
+        const selected = incoming.slice(0, available);
+        const overflow = incoming.length - selected.length;
+        const newJobs = selected.map((file) => ({
+          id: nextJobId++, file, inputMime: null, sourceDimensions: null, sourceUrl: null,
+          resultBlob: null, resultUrl: null, outputWidth: null, outputHeight: null,
+          outputMime: null, state: 'checking', message: '', processedKey: '', targetHit: null,
+          autoDownscaled: false, safetyReduced: false, qualityUsed: null, targetBytes: null, targetMissReason: ''
+        }));
+        isCheckingFiles = true;
+        try {
+          jobs.push(...newJobs);
+          updateQueueSummary();
+          updateToolbar();
+          updateFileActionStates();
+          for (let start = 0; start < newJobs.length; start += RENDER_CHUNK_SIZE) {
+            const fragment = document.createDocumentFragment();
+            for (const job of newJobs.slice(start, start + RENDER_CHUNK_SIZE)) fragment.append(renderJob(job, currentSettingsKey()));
+            fileList.append(fragment);
+            if (start + RENDER_CHUNK_SIZE < newJobs.length) await new Promise((resolve) => window.setTimeout(resolve, 0));
+          }
+          let nextIndex = 0;
+          const workerCount = Math.min(4, newJobs.length);
+          const workers = Array.from({ length: workerCount }, async () => {
+            while (nextIndex < newJobs.length) {
+              const job = newJobs[nextIndex++];
+              try {
+                const inspected = await inspectImageFile(job.file);
+                if (inspected.error) {
+                  job.state = 'error';
+                  job.message = inspected.error;
+                  job.sourceDimensions = inspected.dimensions || null;
+                  renderJobInQueue(job);
+                  await new Promise((resolve) => window.setTimeout(resolve, 0));
+                  continue;
+                }
+                job.inputMime = inspected.mime;
+                job.sourceDimensions = inspected.dimensions || null;
+                job.sourceUrl = URL.createObjectURL(job.file);
+                job.state = 'queued';
+                renderJobInQueue(job);
+              } catch (error) {
+                releaseObjectUrl(job.sourceUrl);
+                job.sourceUrl = null;
+                job.inputMime = null;
+                job.state = 'error';
+                job.message = error && error.message ? error.message : '파일을 확인하지 못했습니다. 다시 선택해 주세요.';
+                renderJobInQueue(job);
+              }
+              await new Promise((resolve) => window.setTimeout(resolve, 0));
+            }
+          });
+          await Promise.all(workers);
+        } catch (_) {
+          for (const job of newJobs) {
+            if (job.state === 'checking') {
+              job.state = 'error';
+              job.message = '파일 확인을 끝내지 못했습니다. 다시 선택해 주세요.';
+              try { renderJobInQueue(job, false); } catch (_) { /* DOM 갱신 실패는 전체 도구를 멈추지 않도록 무시합니다. */ }
+            }
+          }
+          showNotice('일부 파일을 목록에 표시하지 못했습니다. 페이지를 새로고침한 뒤 다시 선택해 주세요.', 'error', true);
+        } finally {
+          isCheckingFiles = false;
+          updateQueueSummary();
+          updateToolbar();
+          updateFileActionStates();
+        }
+        if (overflow > 0) showNotice(`${selected.length}개를 추가했습니다. 최대 ${MAX_FILES}개 제한으로 ${overflow}개 파일은 추가하지 않았습니다.`, 'warning');
+        else if (newJobs.some((job) => job.state === 'error')) showNotice('일부 파일을 확인할 수 없습니다. 각 파일의 오류 안내를 확인해 주세요.', 'warning');
+      }
+
+      function modeValue() {
+        return document.querySelector('input[name="compressionMode"]:checked')?.value || 'quality';
+      }
+
+      function readSettings() {
+        const mode = modeValue();
+        const selectedFormat = formatSelect.value;
+        const qualityPercent = Number(qualityRange.value);
+        if (!Number.isFinite(qualityPercent) || qualityPercent < 10 || qualityPercent > 100) throw new Error('품질은 10%에서 100% 사이로 설정해 주세요.');
+        const settings = {
+          mode,
+          selectedFormat,
+          quality: qualityPercent / 100,
+          targetBytes: null,
+          autoDownscale: $('autoDownscale').checked,
+          resizeMode: resizeMode.value,
+          resizePercent: null,
+          width: null,
+          height: null,
+          preserveRatio: $('preserveRatio').checked
+        };
+        if (mode === 'target') {
+          const targetKB = Number($('targetKB').value);
+          if (!Number.isFinite(targetKB) || targetKB < 1 || targetKB > 102400) throw new Error('목표 용량은 1KB에서 102,400KB 사이로 입력해 주세요.');
+          settings.targetBytes = Math.round(targetKB * 1024);
+        }
+        if (settings.resizeMode === 'percent') {
+          const percent = Number($('resizePercent').value);
+          if (!Number.isInteger(percent) || percent < 1 || percent > 500) throw new Error('크기 비율은 1%에서 500% 사이의 정수로 입력해 주세요.');
+          settings.resizePercent = percent;
+        }
+        if (settings.resizeMode === 'custom') {
+          const width = Number($('resizeWidth').value);
+          const height = Number($('resizeHeight').value);
+          if (!Number.isInteger(width) || !Number.isInteger(height) || width < 1 || height < 1 || width > 20000 || height > 20000) {
+            throw new Error('출력 너비와 높이는 각각 1px에서 20,000px 사이의 정수로 입력해 주세요.');
+          }
+          settings.width = width;
+          settings.height = height;
+        }
+        return settings;
+      }
+
+      function calculateBaseDimensions(sourceWidth, sourceHeight, settings) {
+        let width = sourceWidth;
+        let height = sourceHeight;
+        if (settings.resizeMode === 'percent') {
+          const scale = settings.resizePercent / 100;
+          width = Math.max(1, Math.round(sourceWidth * scale));
+          height = Math.max(1, Math.round(sourceHeight * scale));
+        } else if (settings.resizeMode === 'custom') {
+          if (settings.preserveRatio) {
+            const scale = Math.min(settings.width / sourceWidth, settings.height / sourceHeight);
+            width = Math.max(1, Math.round(sourceWidth * scale));
+            height = Math.max(1, Math.round(sourceHeight * scale));
+          } else {
+            width = settings.width;
+            height = settings.height;
+          }
+        }
+        return { width, height };
+      }
+
+      function exceedsOutputLimit(dimensions) {
+        return dimensions.width > MAX_OUTPUT_SIDE || dimensions.height > MAX_OUTPUT_SIDE || dimensions.width * dimensions.height > MAX_OUTPUT_PIXELS;
+      }
+
+      function clampDimensionsToSafeLimit(dimensions) {
+        const pixelScale = Math.sqrt(MAX_OUTPUT_PIXELS / (dimensions.width * dimensions.height));
+        const sideScale = Math.min(MAX_OUTPUT_SIDE / dimensions.width, MAX_OUTPUT_SIDE / dimensions.height);
+        const scale = Math.min(1, pixelScale, sideScale);
+        return {
+          width: Math.max(1, Math.floor(dimensions.width * scale)),
+          height: Math.max(1, Math.floor(dimensions.height * scale))
+        };
+      }
+
+      async function decodeImage(job) {
+        let bitmapError = null;
+        if (typeof window.createImageBitmap === 'function') {
+          try {
+            const bitmap = await window.createImageBitmap(job.file);
+            if (bitmap.width > 0 && bitmap.height > 0) {
+              return { source: bitmap, width: bitmap.width, height: bitmap.height, close: () => bitmap.close() };
+            }
+            bitmap.close();
+          } catch (error) { bitmapError = error; }
+        }
+        try {
+          const image = new Image();
+          image.decoding = 'async';
+          await new Promise((resolve, reject) => {
+            image.onload = resolve;
+            image.onerror = () => reject(new Error('이미지 디코딩 실패'));
+            image.src = job.sourceUrl;
+          });
+          if (!image.naturalWidth || !image.naturalHeight) throw new Error('이미지 크기를 확인할 수 없습니다.');
+          return { source: image, width: image.naturalWidth, height: image.naturalHeight, close: () => { image.onload = null; image.onerror = null; image.removeAttribute('src'); } };
+        } catch (_) {
+          const suffix = bitmapError ? ' 브라우저가 이 파일을 디코딩하지 못했습니다.' : '';
+          throw new Error(`이미지를 열 수 없습니다. 파일이 손상되지 않았는지 확인해 주세요.${suffix}`);
+        }
+      }
+
+      function checkCancelled() {
+        if (cancelRequested) throw new CancelledError();
+      }
+
+      function makeCanvas(source, dimensions, mime) {
+        const canvas = document.createElement('canvas');
+        canvas.width = dimensions.width;
+        canvas.height = dimensions.height;
+        const context = canvas.getContext('2d');
+        if (!context) {
+          canvas.width = 0; canvas.height = 0;
+          throw new Error('브라우저에서 Canvas를 사용할 수 없습니다. 최신 브라우저로 다시 시도해 주세요.');
+        }
+        try {
+          context.imageSmoothingEnabled = true;
+          try { context.imageSmoothingQuality = 'high'; } catch (_) { /* 일부 브라우저는 이 옵션을 지원하지 않습니다. */ }
+          if (mime === 'image/jpeg') {
+            context.fillStyle = '#ffffff';
+            context.fillRect(0, 0, dimensions.width, dimensions.height);
+          }
+          context.drawImage(source, 0, 0, dimensions.width, dimensions.height);
+        } catch (error) {
+          canvas.width = 0; canvas.height = 0;
+          throw new Error('이미지를 그리는 중 오류가 발생했습니다. 출력 크기를 낮춰 다시 시도해 주세요.');
+        }
+        return canvas;
+      }
+
+      function canvasToBlob(canvas, mime, quality) {
+        return new Promise((resolve, reject) => {
+          if (typeof canvas.toBlob !== 'function') {
+            reject(new Error('이 브라우저는 Canvas 이미지 인코딩을 지원하지 않습니다. 최신 버전으로 업데이트해 주세요.'));
+            return;
+          }
+          try {
+            if (quality === undefined) canvas.toBlob(resolve, mime);
+            else canvas.toBlob(resolve, mime, quality);
+          } catch (_) {
+            reject(new Error('이미지를 인코딩하지 못했습니다. 출력 크기를 낮추거나 다른 형식을 선택해 주세요.'));
+          }
+        });
+      }
+
+      async function encodeCanvas(canvas, mime, quality) {
+        checkCancelled();
+        await new Promise((resolve) => window.setTimeout(resolve, 0));
+        checkCancelled();
+        const blob = await canvasToBlob(canvas, mime, quality);
+        checkCancelled();
+        if (!blob || blob.size === 0) throw new Error('브라우저가 빈 이미지 결과를 반환했습니다. 다시 시도해 주세요.');
+        if (blob.type !== mime) {
+          const actual = blob.type && MIME_INFO[blob.type] ? MIME_INFO[blob.type].longLabel : (blob.type || '알 수 없는 형식');
+          throw new Error(`${MIME_INFO[mime]?.longLabel || mime} 인코딩을 사용할 수 없습니다. 브라우저가 ${actual} 형식으로 대신 응답했습니다.`);
+        }
+        return blob;
+      }
+
+      async function encodeAtDimensions(source, dimensions, mime, quality) {
+        checkCancelled();
+        const canvas = makeCanvas(source, dimensions, mime);
+        try {
+          const blob = await encodeCanvas(canvas, mime, quality);
+          return blob;
+        } finally {
+          canvas.width = 0;
+          canvas.height = 0;
+        }
+      }
+
+      function dimensionsAtScale(base, scale) {
+        if (scale <= 0) return { width: 1, height: 1 };
+        return {
+          width: Math.max(1, Math.min(base.width, Math.round(base.width * scale))),
+          height: Math.max(1, Math.min(base.height, Math.round(base.height * scale)))
+        };
+      }
+
+      async function encodeSmallestQualityAtDimensions(source, dimensions, mime, onProgress) {
+        const canvas = makeCanvas(source, dimensions, mime);
+        try {
+          onProgress('목표 용량에 맞는 해상도를 확인하는 중…');
+          return await encodeCanvas(canvas, mime, mime === 'image/png' ? undefined : 0.1);
+        } finally {
+          canvas.width = 0;
+          canvas.height = 0;
+        }
+      }
+
+      async function encodeBestQualityWithinTarget(source, dimensions, mime, qualityCap, targetBytes, onProgress) {
+        const canvas = makeCanvas(source, dimensions, mime);
+        try {
+          if (mime === 'image/png') {
+            onProgress('PNG 무손실 결과를 확인하는 중…');
+            const blob = await encodeCanvas(canvas, mime, undefined);
+            return { blob, hit: blob.size <= targetBytes, quality: null };
+          }
+          const minimumQuality = 0.1;
+          onProgress('선택한 품질 상한으로 결과 크기를 확인하는 중…');
+          const highBlob = await encodeCanvas(canvas, mime, qualityCap);
+          if (highBlob.size <= targetBytes || qualityCap <= minimumQuality) {
+            return { blob: highBlob, hit: highBlob.size <= targetBytes, quality: qualityCap };
+          }
+          onProgress('품질 수준을 조정해 목표 용량을 탐색하는 중…');
+          let bestBlob = await encodeCanvas(canvas, mime, minimumQuality);
+          if (bestBlob.size > targetBytes) return { blob: bestBlob, hit: false, quality: minimumQuality };
+          let low = minimumQuality;
+          let high = qualityCap;
+          for (let i = 0; i < QUALITY_SEARCH_STEPS; i += 1) {
+            checkCancelled();
+            const quality = (low + high) / 2;
+            const candidate = await encodeCanvas(canvas, mime, quality);
+            if (candidate.size <= targetBytes) {
+              bestBlob = candidate;
+              low = quality;
+            } else {
+              high = quality;
+            }
+          }
+          return { blob: bestBlob, hit: bestBlob.size <= targetBytes, quality: low };
+        } finally {
+          canvas.width = 0;
+          canvas.height = 0;
+        }
+      }
+
+      async function encodeForTarget(source, baseDimensions, mime, qualityCap, targetBytes, autoDownscale, onProgress) {
+        const baseResult = await encodeBestQualityWithinTarget(source, baseDimensions, mime, qualityCap, targetBytes, onProgress);
+        if (baseResult.hit) {
+          return { ...baseResult, width: baseDimensions.width, height: baseDimensions.height, autoDownscaled: false, missReason: '' };
+        }
+        if (!autoDownscale) {
+          return {
+            ...baseResult,
+            width: baseDimensions.width,
+            height: baseDimensions.height,
+            autoDownscaled: false,
+            missReason: mime === 'image/png'
+              ? 'PNG는 무손실 형식이라 품질을 낮출 수 없습니다. 크기를 줄이거나 JPG·WebP로 바꾸고 목표를 확인해 보세요.'
+              : '현재 크기를 유지하면 최저 인코딩 품질에서도 목표 용량을 넘습니다. 자동 크기 축소를 켜거나 목표를 높여 보세요.'
+          };
+        }
+
+        const smallestDimensions = { width: 1, height: 1 };
+        const smallestBlob = await encodeSmallestQualityAtDimensions(source, smallestDimensions, mime, onProgress);
+        if (smallestBlob.size > targetBytes) {
+          const chooseSmallest = smallestBlob.size < baseResult.blob.size;
+          return {
+            blob: chooseSmallest ? smallestBlob : baseResult.blob,
+            hit: false,
+            quality: chooseSmallest ? (mime === 'image/png' ? null : 0.1) : baseResult.quality,
+            width: chooseSmallest ? smallestDimensions.width : baseDimensions.width,
+            height: chooseSmallest ? smallestDimensions.height : baseDimensions.height,
+            autoDownscaled: chooseSmallest,
+            missReason: '1×1 픽셀에서도 목표 용량보다 큽니다. 목표를 높이거나 다른 출력 형식을 선택해 보세요.'
+          };
+        }
+
+        let low = 0;
+        let high = 1;
+        let bestDimensions = smallestDimensions;
+        const tested = new Map([['1x1', true]]);
+        for (let i = 0; i < TARGET_SEARCH_STEPS; i += 1) {
+          checkCancelled();
+          const scale = (low + high) / 2;
+          const dimensions = dimensionsAtScale(baseDimensions, scale);
+          const key = `${dimensions.width}x${dimensions.height}`;
+          let fits = tested.get(key);
+          if (fits === undefined) {
+            const candidate = await encodeSmallestQualityAtDimensions(source, dimensions, mime, onProgress);
+            fits = candidate.size <= targetBytes;
+            tested.set(key, fits);
+          }
+          if (fits) {
+            low = scale;
+            bestDimensions = dimensions;
+          } else {
+            high = scale;
+          }
+        }
+
+        const finalResult = await encodeBestQualityWithinTarget(source, bestDimensions, mime, qualityCap, targetBytes, onProgress);
+        return {
+          ...finalResult,
+          width: bestDimensions.width,
+          height: bestDimensions.height,
+          autoDownscaled: bestDimensions.width !== baseDimensions.width || bestDimensions.height !== baseDimensions.height,
+          missReason: finalResult.hit ? '' : '브라우저 인코더가 만든 실제 결과가 목표를 넘었습니다. 목표를 높이거나 출력 형식을 바꿔 보세요.'
+        };
+      }
+
+      async function processOne(job, settings, onProgress) {
+        checkCancelled();
+        const decoded = await decodeImage(job);
+        try {
+          checkCancelled();
+          const sourceWidth = decoded.width;
+          const sourceHeight = decoded.height;
+          job.sourceDimensions = { width: sourceWidth, height: sourceHeight };
+          if (sourceWidth * sourceHeight > MAX_SOURCE_PIXELS) {
+            throw new Error('이미지 해상도가 5천만 픽셀을 넘습니다. 더 작은 원본을 선택해 주세요.');
+          }
+          const mime = settings.selectedFormat === 'original' ? job.inputMime : settings.selectedFormat;
+          if (!MIME_INFO[mime]) throw new Error('출력 형식을 확인할 수 없습니다. 다른 형식을 선택해 주세요.');
+          if (!capabilities[mime]) {
+            throw new Error(`${MIME_INFO[mime].longLabel} 인코딩은 현재 브라우저에서 지원되지 않습니다. 출력 형식을 변경해 주세요.`);
+          }
+          let dimensions = calculateBaseDimensions(sourceWidth, sourceHeight, settings);
+          let safetyReduced = false;
+          if (exceedsOutputLimit(dimensions)) {
+            if (settings.mode === 'target' && settings.autoDownscale) {
+              dimensions = clampDimensionsToSafeLimit(dimensions);
+              safetyReduced = true;
+            } else {
+              throw new Error(`요청한 출력 크기가 브라우저 안정성 한도를 넘습니다. 한 변 ${MAX_OUTPUT_SIDE.toLocaleString('ko-KR')}px 및 총 ${(MAX_OUTPUT_PIXELS / 1_000_000).toFixed(0)}MP 이내로 크기를 낮춰 주세요.`);
+            }
+          }
+
+          if (settings.mode === 'quality') {
+            onProgress('이미지를 인코딩하는 중…');
+            const quality = mime === 'image/png' ? undefined : settings.quality;
+            const blob = await encodeAtDimensions(decoded.source, dimensions, mime, quality);
+            return {
+              blob, width: dimensions.width, height: dimensions.height, mime,
+              targetHit: null, autoDownscaled: false, safetyReduced, qualityUsed: quality ?? null, targetBytes: null, targetMissReason: ''
+            };
+          }
+
+          const targetResult = await encodeForTarget(
+            decoded.source, dimensions, mime, settings.quality, settings.targetBytes, settings.autoDownscale, onProgress
+          );
+          return {
+            blob: targetResult.blob,
+            width: targetResult.width,
+            height: targetResult.height,
+            mime,
+            targetHit: targetResult.hit,
+            autoDownscaled: targetResult.autoDownscaled,
+            safetyReduced,
+            qualityUsed: targetResult.quality,
+            targetBytes: settings.targetBytes,
+            targetMissReason: targetResult.missReason || ''
+          };
+        } finally {
+          try { decoded.close(); } catch (_) { /* 디코더 자원 해제 실패는 결과를 무효화하지 않습니다. */ }
+        }
+      }
+
+      function createElement(tag, className, text) {
+        const element = document.createElement(tag);
+        if (className) element.className = className;
+        if (text !== undefined) element.textContent = text;
+        return element;
+      }
+
+      function stateLabel(job) {
+        switch (job.state) {
+          case 'checking': return ['확인 중', ''];
+          case 'queued': return ['대기 중', ''];
+          case 'processing': return ['처리 중', 'status-processing'];
+          case 'done': return ['완료', 'status-done'];
+          case 'warning': return ['목표 미달', 'status-warning'];
+          case 'error': return ['오류', 'status-error'];
+          case 'stale': return ['재처리 필요', 'status-warning'];
+          case 'cancelled': return ['취소됨', 'status-warning'];
+          default: return ['대기 중', ''];
+        }
+      }
+
+      function releaseObjectUrl(url) {
+        if (url) {
+          try { URL.revokeObjectURL(url); } catch (_) { /* 이미 해제된 URL은 무시합니다. */ }
+        }
+      }
+
+      function clearResult(job) {
+        if (currentCompareJobId === job.id) closeCompareDialog();
+        releaseObjectUrl(job.resultUrl);
+        job.resultUrl = null;
+        job.resultBlob = null;
+        job.outputWidth = null;
+        job.outputHeight = null;
+        job.outputMime = null;
+        job.processedKey = '';
+        job.targetHit = null;
+        job.autoDownscaled = false;
+        job.safetyReduced = false;
+        job.qualityUsed = null;
+        job.targetBytes = null;
+        job.targetMissReason = '';
+      }
+
+      function closeCompareDialog() {
+        if (compareDialog.open) compareDialog.close();
+        compareBeforeImage.removeAttribute('src');
+        compareAfterImage.removeAttribute('src');
+        compareBeforeImage.alt = '';
+        compareAfterImage.alt = '';
+        currentCompareJobId = null;
+        const returnFocus = compareReturnFocus;
+        compareReturnFocus = null;
+        if (returnFocus && returnFocus.isConnected) returnFocus.focus();
+      }
+
+      function openCompareDialog(id, trigger) {
+        const job = jobs.find((entry) => entry.id === id);
+        if (!job || !job.sourceUrl || !job.resultUrl || !job.resultBlob || job.processedKey !== currentSettingsKey()) return;
+        if (typeof compareDialog.showModal !== 'function') {
+          showNotice('이 브라우저에서는 비교 창을 열 수 없습니다. 최신 버전으로 업데이트해 주세요.', 'warning');
+          return;
+        }
+        currentCompareJobId = job.id;
+        compareReturnFocus = trigger;
+        compareFileName.textContent = job.file.name;
+        compareBeforeImage.src = job.sourceUrl;
+        compareBeforeImage.alt = `원본 이미지: ${job.file.name}`;
+        compareAfterImage.src = job.resultUrl;
+        compareAfterImage.alt = `처리 결과 이미지: ${job.file.name}`;
+        const originalDimensionText = formatDimensions(job.sourceDimensions?.width, job.sourceDimensions?.height);
+        compareBeforeMeta.textContent = [formatBytes(job.file.size), originalDimensionText].filter(Boolean).join(' · ');
+        compareAfterMeta.textContent = [formatBytes(job.resultBlob.size), formatDimensions(job.outputWidth, job.outputHeight)].filter(Boolean).join(' · ');
+        compareDialog.showModal();
+        closeCompareButton.focus();
+      }
+
+      function removeJob(id) {
+        if (isUiLocked()) return;
+        const index = jobs.findIndex((job) => job.id === id);
+        if (index < 0) return;
+        const job = jobs[index];
+        releaseObjectUrl(job.sourceUrl);
+        clearResult(job);
+        jobs.splice(index, 1);
+        fileList.querySelector(`[data-job-id="${job.id}"]`)?.remove();
+        updateQueueSummary();
+        updateToolbar();
+        updateFileActionStates();
+      }
+
+      function getJobMessage(job) {
+        if (job.state === 'error') return job.message;
+        if (job.state === 'stale') return job.message || '설정이 변경되었습니다. 현재 옵션으로 다시 처리해 주세요.';
+        if (job.state === 'cancelled') return job.message || '현재 처리 요청이 취소되었습니다. 다시 처리할 수 있습니다.';
+        if (job.state === 'processing') return job.message || '브라우저에서 이미지를 처리하고 있습니다.';
+        if (job.resultBlob) {
+          const parts = [];
+          if (Number.isFinite(job.outputWidth) && Number.isFinite(job.outputHeight)) parts.push(`출력 ${formatDimensions(job.outputWidth, job.outputHeight)}`);
+          if (job.targetBytes !== null) parts.push(`목표 ${formatBytes(job.targetBytes)} · 실제 결과 ${formatBytes(job.resultBlob.size)}`);
+          if (job.autoDownscaled) parts.push('목표 용량을 위해 크기를 축소했습니다.');
+          if (job.safetyReduced) parts.push('브라우저 안정성 한도에 맞춰 크기를 제한했습니다.');
+          if (job.outputMime === 'image/png') parts.push('PNG는 품질 설정 없이 무손실로 인코딩했습니다.');
+          if (job.state === 'warning') parts.push(job.targetMissReason || '설정한 범위에서 목표 용량에 도달하지 못했습니다.');
+          return parts.join(' · ');
+        }
+        if (job.state === 'queued') return '처리 대기 중입니다.';
+        return '';
+      }
+
+      function renderJob(job, settingsKey) {
+        const article = createElement('article', `file-card state-${job.state}`);
+        article.dataset.jobId = String(job.id);
+        article.setAttribute('aria-label', `파일 ${job.file.name}: ${stateLabel(job)[0]}`);
+        const thumb = createElement('div', 'file-thumb');
+        const previewUrl = job.resultUrl || job.sourceUrl;
+        if (previewUrl) {
+          const image = document.createElement('img');
+          image.src = previewUrl;
+          image.alt = job.resultUrl ? `처리 결과 미리보기: ${job.file.name}` : `원본 미리보기: ${job.file.name}`;
+          image.loading = 'lazy';
+          thumb.append(image);
+        } else {
+          thumb.append(createElement('span', 'thumb-placeholder', '미리보기 없음'));
+        }
+        const displayMime = job.outputMime || job.inputMime;
+        if (displayMime && MIME_INFO[displayMime]) thumb.append(createElement('span', 'type-stamp', MIME_INFO[displayMime].label));
+        article.append(thumb);
+
+        const main = createElement('div', 'file-main');
+        const top = createElement('div', 'file-card-top');
+        const titleBlock = createElement('div');
+        const fileName = createElement('p', 'file-name', job.file.name || '이름 없는 파일');
+        fileName.title = job.file.name || '';
+        const metaParts = [];
+        if (job.inputMime && MIME_INFO[job.inputMime]) metaParts.push(MIME_INFO[job.inputMime].longLabel);
+        metaParts.push(formatBytes(job.file.size));
+        if (job.sourceDimensions) {
+          const dimensionText = formatDimensions(job.sourceDimensions.width, job.sourceDimensions.height);
+          if (dimensionText) metaParts.push(dimensionText);
+        }
+        const fileMeta = createElement('p', 'file-meta', metaParts.join(' · '));
+        titleBlock.append(fileName, fileMeta);
+        const [label, badgeClass] = stateLabel(job);
+        top.append(titleBlock, createElement('span', `status-badge ${badgeClass}`, label));
+        main.append(top);
+
+        if (job.resultBlob) {
+          const compare = createElement('div', 'compare-row');
+          const originalSize = createElement('span', '', `원본 ${formatBytes(job.file.size)}`);
+          originalSize.title = `${job.file.size.toLocaleString('ko-KR')} bytes`;
+          const resultSize = createElement('strong', '', `결과 ${formatBytes(job.resultBlob.size)}`);
+          resultSize.title = `${job.resultBlob.size.toLocaleString('ko-KR')} bytes`;
+          compare.append(originalSize);
+          compare.append(createElement('span', '', '→'));
+          compare.append(resultSize);
+          const difference = job.file.size - job.resultBlob.size;
+          if (difference > 0) {
+            const saved = (difference / job.file.size) * 100;
+            compare.append(createElement('span', 'change-label', `${formatPercent(saved)}% 감소`));
+          } else if (difference < 0) {
+            const growth = (Math.abs(difference) / Math.max(job.file.size, 1)) * 100;
+            compare.append(createElement('span', 'change-label increased', `${formatPercent(growth)}% 증가`));
+          } else {
+            compare.append(createElement('span', 'change-label', '용량 동일'));
+          }
+          main.append(compare);
+        }
+
+        const message = getJobMessage(job);
+        if (message) {
+          const isError = job.state === 'error';
+          main.append(createElement('p', `file-message${isError ? ' error-text' : ''}`, message));
+        }
+
+        const actions = createElement('div', 'file-actions');
+        const isCurrent = Boolean(job.resultBlob && job.processedKey === settingsKey);
+        const compareButton = createElement('button', 'button button-secondary', '전후 비교');
+        compareButton.type = 'button';
+        compareButton.dataset.action = 'compare';
+        compareButton.disabled = isBusy() || !isCurrent;
+        compareButton.setAttribute('aria-label', `${job.file.name} 원본과 결과 비교 미리보기`);
+        compareButton.addEventListener('click', () => openCompareDialog(job.id, compareButton));
+        actions.append(compareButton);
+        const download = createElement('button', 'button button-secondary', '결과 다운로드');
+        download.type = 'button';
+        download.dataset.action = 'download';
+        download.disabled = isBusy() || !isCurrent;
+        download.setAttribute('aria-label', `${job.file.name} 처리 결과 다운로드`);
+        download.addEventListener('click', () => downloadJob(job.id));
+        actions.append(download);
+        const remove = createElement('button', 'button button-quiet', '제거');
+        remove.type = 'button';
+        remove.dataset.action = 'remove';
+        remove.disabled = isUiLocked();
+        remove.setAttribute('aria-label', `${job.file.name} 작업 목록에서 제거`);
+        remove.addEventListener('click', () => removeJob(job.id));
+        actions.append(remove);
+        main.append(actions);
+        article.append(main);
+        return article;
+      }
+
+      function renderJobInQueue(job, refreshSummary = true) {
+        const selector = `[data-job-id="${job.id}"]`;
+        const existing = fileList.querySelector(selector);
+        const updated = renderJob(job, currentSettingsKey());
+        if (existing) existing.replaceWith(updated);
+        else fileList.append(updated);
+        if (refreshSummary) {
+          updateQueueSummary();
+          updateToolbar();
+        }
+      }
+
+      function refreshSettingsRows() {
+        for (const job of jobs) if (job.state === 'stale') renderJobInQueue(job, false);
+        updateQueueSummary();
+        updateToolbar();
+        updateFileActionStates();
+      }
+
+      function updateFileActionStates() {
+        const key = currentSettingsKey();
+        const jobsById = new Map(jobs.map((job) => [String(job.id), job]));
+        const busy = isBusy();
+        const locked = isUiLocked();
+        for (const row of fileList.children) {
+          const job = jobsById.get(row.dataset.jobId);
+          if (!job) continue;
+          const current = Boolean(job.resultBlob && job.processedKey === key);
+          const compare = row.querySelector('[data-action="compare"]');
+          const download = row.querySelector('[data-action="download"]');
+          const remove = row.querySelector('[data-action="remove"]');
+          if (compare) compare.disabled = busy || !current;
+          if (download) download.disabled = busy || !current;
+          if (remove) remove.disabled = locked;
+        }
+      }
+
+      function updateQueueSummary() {
+        const count = jobs.length;
+        const validJobs = jobs.filter((job) => Boolean(job.inputMime)).length;
+        const checkingJobs = jobs.filter((job) => job.state === 'checking').length;
+        const failedJobs = jobs.filter((job) => job.state === 'error').length;
+        const doneJobs = jobs.filter((job) => job.state === 'done').length;
+        const warningJobs = jobs.filter((job) => job.state === 'warning').length;
+        queueCount.textContent = String(count);
+        emptyState.hidden = count !== 0;
+
+        if (count === 0) {
+          queueSummary.textContent = '파일이 아직 없습니다.';
+          selectionSummary.textContent = '파일을 추가하면 처리 가능한 형식과 선택 개수를 확인합니다.';
+        } else {
+          const summaryParts = [];
+          if (checkingJobs) summaryParts.push(`확인 중 ${checkingJobs}개`);
+          summaryParts.push(`처리 가능 ${validJobs}개`);
+          if (doneJobs) summaryParts.push(`완료 ${doneJobs}개`);
+          if (warningJobs) summaryParts.push(`목표 미달 ${warningJobs}개`);
+          if (failedJobs) summaryParts.push(`오류 ${failedJobs}개`);
+          queueSummary.textContent = summaryParts.join(' · ');
+          selectionSummary.textContent = `선택 ${count}개 · 처리 가능 ${validJobs}개${checkingJobs ? ` · 확인 중 ${checkingJobs}개` : ''}${failedJobs ? ` · 확인 필요 ${failedJobs}개` : ''}`;
+        }
+      }
+
+      function renderQueue() {
+        const key = currentSettingsKey();
+        const fragment = document.createDocumentFragment();
+        for (const job of jobs) fragment.append(renderJob(job, key));
+        fileList.replaceChildren(fragment);
+        updateQueueSummary();
+        updateToolbar();
+      }
+
+      function updateToolbar() {
+        const key = currentSettingsKey();
+        const validJobs = jobs.filter((job) => Boolean(job.inputMime));
+        const currentResults = jobs.filter((job) => Boolean(job.resultBlob && job.processedKey === key));
+        const pendingCount = validJobs.filter((job) => !job.resultBlob || job.processedKey !== key).length;
+        const resultBytes = currentResults.reduce((sum, job) => sum + job.resultBlob.size, 0);
+        const tooLargeEntry = currentResults.some((job) => job.resultBlob.size > MAX_ZIP_ENTRY_BYTES);
+        let zipOverhead = 22 + currentResults.length * 76;
+        try {
+          const encoder = new TextEncoder();
+          zipOverhead += uniqueZipFilenames(currentResults).reduce((sum, name) => sum + 2 * encoder.encode(name).byteLength, 0);
+        } catch (_) {
+          zipOverhead += currentResults.reduce((sum, job) => sum + outputFilename(job).length * 8, 0);
+        }
+        const tooLargeTotal = resultBytes + zipOverhead > MAX_ZIP_BYTES;
+        const busy = isBusy();
+        const locked = isUiLocked();
+
+        chooseButton.textContent = jobs.length ? '파일 추가' : '파일 선택';
+        chooseButton.disabled = locked || jobs.length >= MAX_FILES;
+        fileInput.disabled = locked || jobs.length >= MAX_FILES;
+        dropzone.setAttribute('aria-disabled', locked || jobs.length >= MAX_FILES ? 'true' : 'false');
+        clearQueueButton.disabled = locked || jobs.length === 0;
+        processButton.disabled = locked || !initialized || pendingCount === 0;
+        if (isCheckingFiles) processButton.textContent = '파일 확인 중…';
+        else if (isProcessing) processButton.textContent = '처리 중…';
+        else if (isZipping) processButton.textContent = 'ZIP 만드는 중…';
+        else if (pendingCount > 0 && currentResults.length > 0) processButton.textContent = `나머지 파일 처리 (${pendingCount})`;
+        else if (pendingCount > 0) processButton.textContent = '이미지 처리 시작';
+        else processButton.textContent = '처리 완료';
+
+        downloadZipButton.hidden = currentResults.length === 0;
+        downloadZipButton.disabled = locked || tooLargeEntry || tooLargeTotal;
+        downloadZipButton.textContent = `완료 파일 ZIP 다운로드 (${currentResults.length})`;
+        zipHint.hidden = currentResults.length === 0;
+        zipHint.dataset.kind = tooLargeEntry || tooLargeTotal ? 'warning' : 'info';
+        if (tooLargeEntry) zipHint.textContent = 'ZIP에는 파일당 40MB 이하 결과만 넣을 수 있습니다. 큰 파일은 개별 다운로드해 주세요.';
+        else if (tooLargeTotal) zipHint.textContent = 'ZIP 파일 크기 한도는 50MB입니다. 파일별로 다운로드해 주세요.';
+        else zipHint.textContent = `완료 결과만 포함합니다. ZIP은 추가 압축 없이 파일당 40MB·전체 50MB까지 만들며, 결과 보관은 최대 ${formatBytes(MAX_STORED_RESULT_BYTES)}입니다.`;
+
+        cancelButton.hidden = !busy;
+        cancelButton.disabled = isProcessing ? cancelRequested : (isZipping ? zipCancelRequested : true);
+        cancelButton.textContent = isProcessing
+          ? (cancelRequested ? '취소 요청됨' : '처리 취소')
+          : (zipCancelRequested ? '취소 요청됨' : 'ZIP 생성 취소');
+        progressPanel.hidden = !busy;
+      }
+
+      function renderProgress(done, total, fileName, detail, active = false) {
+        const completed = Math.min(done, total);
+        progressBar.max = Math.max(1, total);
+        progressBar.value = completed;
+        progressCount.textContent = `${completed} / ${total}`;
+        if (completed >= total) progressTitle.textContent = '일괄 처리가 완료되었습니다.';
+        else if (active && fileName) progressTitle.textContent = `${completed + 1} / ${total} · ${fileName}`;
+        else progressTitle.textContent = completed ? `${completed} / ${total}개 파일 처리 완료` : '일괄 처리를 준비하고 있습니다.';
+        progressDetail.textContent = detail || (completed < total ? '현재 파일을 처리하고 있습니다.' : '각 파일의 결과를 확인해 주세요.');
+      }
+
+      function renderZipProgress(doneBytes, totalBytes, fileName, detail) {
+        const max = Math.max(1, totalBytes);
+        progressBar.max = max;
+        progressBar.value = Math.min(doneBytes, max);
+        progressCount.textContent = `${formatBytes(Math.min(doneBytes, totalBytes))} / ${formatBytes(totalBytes)}`;
+        progressTitle.textContent = fileName ? `ZIP 준비 중 · ${fileName}` : 'ZIP 파일을 마무리하는 중';
+        progressDetail.textContent = detail || '결과 파일을 확인하고 있습니다.';
+      }
+
+      function downloadJob(id) {
+        if (isBusy()) return;
+        const job = jobs.find((entry) => entry.id === id);
+        if (!job || !job.resultBlob || job.processedKey !== currentSettingsKey() || !job.resultUrl) return;
+        const anchor = document.createElement('a');
+        anchor.href = job.resultUrl;
+        anchor.download = outputFilename(job);
+        anchor.rel = 'noopener';
+        document.body.append(anchor);
+        anchor.click();
+        anchor.remove();
+      }
+
+      function revokeActiveZipUrl() {
+        if (activeZipTimer) window.clearTimeout(activeZipTimer);
+        activeZipTimer = 0;
+        releaseObjectUrl(activeZipUrl);
+        activeZipUrl = null;
+      }
+
+      async function createStoredZip(entries, totalPayloadBytes) {
+        const encoder = new TextEncoder();
+        const localParts = [];
+        const centralParts = [];
+        const stamp = dosDateTime(new Date());
+        let localOffset = 0;
+        let centralSize = 0;
+        let completedBytes = 0;
+        let lastPaint = 0;
+
+        for (const entry of entries) {
+          checkZipCancelled();
+          const nameBytes = encoder.encode(entry.name);
+          if (nameBytes.length > 65535) throw new Error('ZIP 안에 넣을 파일 이름이 너무 깁니다.');
+          const blob = entry.job.resultBlob;
+          const crc = await crc32Blob(blob, (readBytes) => {
+            const now = Date.now();
+            if (now - lastPaint >= 100 || readBytes >= blob.size) {
+              renderZipProgress(completedBytes + readBytes, totalPayloadBytes, entry.name, `ZIP 체크섬 계산 중 · ${formatBytes(readBytes)} / ${formatBytes(blob.size)}`);
+              lastPaint = now;
+            }
+          });
+          checkZipCancelled();
+          const localHeader = createZipLocalHeader(nameBytes, crc, blob.size, stamp);
+          localParts.push(localHeader, nameBytes, blob);
+          const centralHeader = createZipCentralHeader(nameBytes, crc, blob.size, localOffset, stamp);
+          centralParts.push(centralHeader, nameBytes);
+          localOffset += localHeader.length + nameBytes.length + blob.size;
+          centralSize += centralHeader.length + nameBytes.length;
+          completedBytes += blob.size;
+          renderZipProgress(completedBytes, totalPayloadBytes, '', '파일 목록을 ZIP에 기록하고 있습니다.');
+          await new Promise((resolve) => window.setTimeout(resolve, 0));
+        }
+
+        checkZipCancelled();
+        const centralOffset = localOffset;
+        const parts = [...localParts, ...centralParts, createZipEndRecord(entries.length, centralSize, centralOffset)];
+        const zipBlob = new Blob(parts, { type: 'application/zip' });
+        if (zipBlob.size > MAX_ZIP_BYTES) throw new Error('ZIP 파일이 50MB 한도를 넘습니다. 파일별로 다운로드해 주세요.');
+        return zipBlob;
+      }
+
+      async function downloadZip() {
+        if (isUiLocked()) return;
+        const settingsKey = currentSettingsKey();
+        const outputJobs = jobs.filter((job) => job.resultBlob && job.processedKey === settingsKey);
+        if (outputJobs.length === 0) {
+          showNotice('ZIP으로 묶을 처리 결과가 없습니다.', 'warning');
+          return;
+        }
+        const totalPayloadBytes = outputJobs.reduce((sum, job) => sum + job.resultBlob.size, 0);
+        if (outputJobs.some((job) => job.resultBlob.size > MAX_ZIP_ENTRY_BYTES)) {
+          showNotice('ZIP에는 파일당 40MB 이하 결과만 넣을 수 있습니다. 개별 다운로드를 이용해 주세요.', 'warning');
+          return;
+        }
+        let filenames;
+        let zipOverhead;
+        try {
+          filenames = uniqueZipFilenames(outputJobs);
+          const encoder = new TextEncoder();
+          zipOverhead = 22 + outputJobs.length * 76 + filenames.reduce((sum, name) => sum + 2 * encoder.encode(name).byteLength, 0);
+        } catch (_) {
+          showNotice('파일 이름을 준비하지 못했습니다. 개별 다운로드를 이용해 주세요.', 'error');
+          return;
+        }
+        if (totalPayloadBytes + zipOverhead > MAX_ZIP_BYTES) {
+          showNotice('ZIP 파일 크기 한도는 50MB입니다. 파일별 다운로드를 이용해 주세요.', 'warning');
+          return;
+        }
+        const entries = outputJobs.map((job, index) => ({ job, name: filenames[index] }));
+        let succeeded = false;
+        let cancelled = false;
+        isZipping = true;
+        zipCancelRequested = false;
+        settingsFieldset.disabled = true;
+        fileInput.disabled = true;
+        renderZipProgress(0, totalPayloadBytes, '', '완료된 결과를 ZIP으로 묶고 있습니다.');
+        updateToolbar();
+        updateFileActionStates();
+        try {
+          const zipBlob = await createStoredZip(entries, totalPayloadBytes);
+          checkZipCancelled();
+          revokeActiveZipUrl();
+          activeZipUrl = URL.createObjectURL(zipBlob);
+          const anchor = document.createElement('a');
+          anchor.href = activeZipUrl;
+          anchor.download = 'filekit-results.zip';
+          anchor.rel = 'noopener';
+          document.body.append(anchor);
+          try { anchor.click(); } catch (error) { revokeActiveZipUrl(); throw error; }
+          finally { anchor.remove(); }
+          const downloadUrl = activeZipUrl;
+          activeZipTimer = window.setTimeout(() => {
+            if (activeZipUrl === downloadUrl) {
+              releaseObjectUrl(activeZipUrl);
+              activeZipUrl = null;
+              activeZipTimer = 0;
+            }
+          }, 60_000);
+          succeeded = true;
+        } catch (error) {
+          if (error instanceof ZipCancelledError || zipCancelRequested) cancelled = true;
+          else showNotice(error && error.message ? error.message : 'ZIP 파일을 만들지 못했습니다. 개별 다운로드를 이용해 주세요.', 'error', true);
+        } finally {
+          isZipping = false;
+          zipCancelRequested = false;
+          settingsFieldset.disabled = false;
+          fileInput.disabled = false;
+          updateToolbar();
+          updateFileActionStates();
+          if (cancelled) showNotice('ZIP 생성을 취소했습니다. 처리 결과는 그대로 유지됩니다.', 'warning');
+          else if (succeeded) showNotice('ZIP 파일 다운로드를 시작했습니다.', 'success');
+        }
+      }
+
+      async function processQueue() {
+        if (isUiLocked()) return;
+        let settings;
+        try {
+          settings = readSettings();
+        } catch (error) {
+          showNotice(error.message || '입력한 설정을 확인해 주세요.', 'error', true);
+          return;
+        }
+        const settingsKey = currentSettingsKey();
+        if (syncSettingsKey(settingsKey)) refreshSettingsRows();
+        const validJobs = jobs.filter((job) => Boolean(job.inputMime));
+        if (validJobs.length === 0) {
+          showNotice('처리할 수 있는 JPG, PNG 또는 WebP 파일을 추가해 주세요.', 'warning');
+          return;
+        }
+        const pendingJobs = validJobs.filter((job) => !job.resultBlob || job.processedKey !== settingsKey);
+        if (pendingJobs.length === 0) return;
+
+        isProcessing = true;
+        cancelRequested = false;
+        settingsFieldset.disabled = true;
+        fileInput.disabled = true;
+        renderProgress(0, pendingJobs.length, '', '일괄 처리를 준비하고 있습니다.');
+        updateQueueSummary();
+        updateToolbar();
+        updateFileActionStates();
+        let completed = 0;
+        let errors = 0;
+        let missed = 0;
+        try {
+          for (let index = 0; index < pendingJobs.length; index += 1) {
+            const job = pendingJobs[index];
+            if (cancelRequested) {
+              for (let rest = index; rest < pendingJobs.length; rest += 1) {
+                const pending = pendingJobs[rest];
+                clearResult(pending);
+                pending.state = 'cancelled';
+                pending.message = '취소 요청으로 처리하지 않았습니다. 다시 처리할 수 있습니다.';
+                renderJobInQueue(pending);
+              }
+              break;
+            }
+            clearResult(job);
+            job.state = 'processing';
+            job.message = '';
+            renderProgress(index, pendingJobs.length, job.file.name, '이미지를 열고 결과 크기를 계산하는 중…', true);
+            renderJobInQueue(job);
+            try {
+              const result = await processOne(job, settings, (detail) => {
+                renderProgress(index, pendingJobs.length, job.file.name, detail, true);
+              });
+              checkCancelled();
+              const storedResultBytes = jobs.reduce((sum, entry) => sum + (entry.resultBlob ? entry.resultBlob.size : 0), 0);
+              if (storedResultBytes + result.blob.size > MAX_STORED_RESULT_BYTES) {
+                throw new Error(`완료 결과의 메모리 보관 한도(128MB)를 넘습니다. 이 결과(${formatBytes(result.blob.size)})는 저장하지 않았습니다. 일부 결과를 제거하거나 출력 크기를 낮춰 다시 시도해 주세요.`);
+              }
+              job.resultBlob = result.blob;
+              job.resultUrl = URL.createObjectURL(result.blob);
+              job.outputWidth = result.width;
+              job.outputHeight = result.height;
+              job.outputMime = result.mime;
+              job.targetHit = result.targetHit;
+              job.autoDownscaled = result.autoDownscaled;
+              job.safetyReduced = result.safetyReduced;
+              job.qualityUsed = result.qualityUsed;
+              job.targetBytes = result.targetBytes;
+              job.targetMissReason = result.targetMissReason || '';
+              job.processedKey = settingsKey;
+              job.state = result.targetHit === false ? 'warning' : 'done';
+              job.message = '';
+              completed += 1;
+              if (job.state === 'warning') missed += 1;
+            } catch (error) {
+              clearResult(job);
+              if (error instanceof CancelledError || cancelRequested) {
+                job.state = 'cancelled';
+                job.message = '처리 요청이 취소되었습니다. 다시 처리할 수 있습니다.';
+              } else {
+                job.state = 'error';
+                job.message = error && error.message ? error.message : '알 수 없는 오류로 처리하지 못했습니다.';
+                errors += 1;
+              }
+            }
+            renderProgress(index + 1, pendingJobs.length, '', job.state === 'error' ? '오류를 기록했습니다. 나머지 파일은 계속 처리합니다.' : '파일 처리를 마쳤습니다.');
+            renderJobInQueue(job);
+            await new Promise((resolve) => window.setTimeout(resolve, 0));
+            if (cancelRequested && index + 1 < pendingJobs.length) {
+              for (let rest = index + 1; rest < pendingJobs.length; rest += 1) {
+                const pending = pendingJobs[rest];
+                clearResult(pending);
+                pending.state = 'cancelled';
+                pending.message = '취소 요청으로 처리하지 않았습니다. 다시 처리할 수 있습니다.';
+                renderJobInQueue(pending);
+              }
+              break;
+            }
+          }
+        } finally {
+          const cancelled = pendingJobs.filter((job) => job.state === 'cancelled').length;
+          isProcessing = false;
+          cancelRequested = false;
+          settingsFieldset.disabled = false;
+          fileInput.disabled = false;
+          renderProgress(completed + errors + cancelled, pendingJobs.length, '', cancelled ? '취소된 파일은 다시 처리할 수 있습니다.' : '각 파일의 결과와 오류를 확인해 주세요.');
+          if (cancelled) progressTitle.textContent = '처리가 취소되었습니다.';
+          updateQueueSummary();
+          updateToolbar();
+          updateFileActionStates();
+          if (completed || errors || missed || cancelled) {
+            const parts = [`처리 완료 ${completed}개`];
+            if (missed) parts.push(`목표 미달 ${missed}개`);
+            if (errors) parts.push(`오류 ${errors}개`);
+            if (cancelled) parts.push(`취소 ${cancelled}개`);
+            showNotice(parts.join(' · '), errors || missed || cancelled ? 'warning' : 'success');
+          }
+        }
+      }
+
+      function clearQueue() {
+        if (isUiLocked()) return;
+        closeCompareDialog();
+        for (const job of jobs) {
+          releaseObjectUrl(job.sourceUrl);
+          clearResult(job);
+        }
+        jobs = [];
+        fileInput.value = '';
+        globalNotice.hidden = true;
+        window.clearTimeout(noticeTimer);
+        renderQueue();
+      }
+
+      async function probeCanvasEncoding(canvas, mime) {
+        try {
+          const blob = await canvasToBlob(canvas, mime, 0.8);
+          return Boolean(blob && blob.size > 0 && blob.type === mime);
+        } catch (_) {
+          return false;
+        }
+      }
+
+      async function initializeCapabilities() {
+        const canvas = document.createElement('canvas');
+        canvas.width = 1;
+        canvas.height = 1;
+        const canCallToBlob = typeof canvas.toBlob === 'function';
+        if (canCallToBlob) {
+          for (const mime of Object.keys(MIME_INFO)) capabilities[mime] = await probeCanvasEncoding(canvas, mime);
+        }
+        canvas.width = 0;
+        canvas.height = 0;
+        for (const option of formatSelect.options) {
+          if (MIME_INFO[option.value]) option.disabled = !capabilities[option.value];
+        }
+        const preferred = capabilities['image/webp'] ? 'image/webp' : (capabilities['image/jpeg'] ? 'image/jpeg' : (capabilities['image/png'] ? 'image/png' : 'original'));
+        if (preferred !== 'original') formatSelect.value = preferred;
+        const supported = Object.keys(MIME_INFO).filter((mime) => capabilities[mime]).map((mime) => MIME_INFO[mime].longLabel);
+        if (supported.length) {
+          formatSupportNote.textContent = `인코딩 가능: ${supported.join(', ')}. 지원되지 않는 원본 형식은 파일별 오류로 표시됩니다.`;
+        } else {
+          formatSupportNote.textContent = '이 브라우저에서 사용할 수 있는 Canvas 이미지 인코더를 찾지 못했습니다. 최신 브라우저에서 다시 열어 주세요.';
+        }
+        initialized = supported.length > 0;
+        updateModeUi();
+        updateResizeUi();
+        lastSettingsKey = currentSettingsKey();
+        updateToolbar();
+        if (!initialized) showNotice('현재 브라우저에서는 이미지 인코딩을 사용할 수 없습니다. 최신 Chrome, Edge, Firefox 또는 Safari에서 다시 시도해 주세요.', 'error', true);
+      }
+
+      themeToggle.addEventListener('click', () => {
+        const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+        setTheme(next, true);
+      });
+      chooseButton.addEventListener('click', () => { if (!isUiLocked() && jobs.length < MAX_FILES) fileInput.click(); });
+      fileInput.addEventListener('change', async () => {
+        const selected = Array.from(fileInput.files || []);
+        fileInput.value = '';
+        await addFiles(selected);
+      });
+      dropzone.addEventListener('click', () => { if (!isUiLocked() && jobs.length < MAX_FILES) fileInput.click(); });
+      dropzone.addEventListener('keydown', (event) => {
+        if ((event.key === 'Enter' || event.key === ' ') && !isUiLocked() && jobs.length < MAX_FILES) {
+          event.preventDefault();
+          fileInput.click();
+        }
+      });
+      for (const eventName of ['dragenter', 'dragover']) {
+        dropzone.addEventListener(eventName, (event) => {
+          event.preventDefault();
+          if (!isUiLocked() && jobs.length < MAX_FILES) dropzone.classList.add('is-dragging');
+        });
+      }
+      for (const eventName of ['dragleave', 'dragend']) {
+        dropzone.addEventListener(eventName, () => dropzone.classList.remove('is-dragging'));
+      }
+      dropzone.addEventListener('drop', async (event) => {
+        event.preventDefault();
+        dropzone.classList.remove('is-dragging');
+        if (isUiLocked()) {
+          showNotice('파일 확인이나 처리 중에는 다른 파일을 추가할 수 없습니다.', 'warning');
+          return;
+        }
+        await addFiles(event.dataTransfer ? event.dataTransfer.files : []);
+      });
+      clearQueueButton.addEventListener('click', clearQueue);
+      processButton.addEventListener('click', processQueue);
+      downloadZipButton.addEventListener('click', downloadZip);
+      closeCompareButton.addEventListener('click', closeCompareDialog);
+      compareDialog.addEventListener('click', (event) => {
+        if (event.target === compareDialog) closeCompareDialog();
+      });
+      compareDialog.addEventListener('close', () => {
+        compareBeforeImage.removeAttribute('src');
+        compareAfterImage.removeAttribute('src');
+        compareBeforeImage.alt = '';
+        compareAfterImage.alt = '';
+        currentCompareJobId = null;
+        const returnFocus = compareReturnFocus;
+        compareReturnFocus = null;
+        if (returnFocus && returnFocus.isConnected) returnFocus.focus();
+      });
+      cancelButton.addEventListener('click', () => {
+        if (isProcessing && !cancelRequested) {
+          cancelRequested = true;
+          cancelButton.disabled = true;
+          cancelButton.textContent = '취소 요청됨';
+          progressDetail.textContent = '현재 파일 인코딩이 끝나는 즉시 처리를 멈춥니다.';
+        } else if (isZipping && !zipCancelRequested) {
+          zipCancelRequested = true;
+          cancelButton.disabled = true;
+          cancelButton.textContent = '취소 요청됨';
+          progressDetail.textContent = '현재 파일 읽기를 마치는 즉시 ZIP 생성을 멈춥니다.';
+        }
+      });
+
+      for (const input of settingsFieldset.querySelectorAll('input, select')) {
+        input.addEventListener('change', handleSettingsChange);
+      }
+      qualityRange.addEventListener('input', () => { qualityValue.textContent = `${qualityRange.value}%`; });
+      $('targetKB').addEventListener('input', () => {
+        const value = Number($('targetKB').value);
+        $('targetKB').setAttribute('aria-invalid', Number.isFinite(value) && value >= 1 && value <= 102400 ? 'false' : 'true');
+      });
+      $('resizePercent').addEventListener('input', () => {
+        const value = Number($('resizePercent').value);
+        $('resizePercent').setAttribute('aria-invalid', Number.isInteger(value) && value >= 1 && value <= 500 ? 'false' : 'true');
+      });
+      $('resizeWidth').addEventListener('input', () => {
+        const value = Number($('resizeWidth').value);
+        $('resizeWidth').setAttribute('aria-invalid', Number.isInteger(value) && value >= 1 && value <= 20000 ? 'false' : 'true');
+      });
+      $('resizeHeight').addEventListener('input', () => {
+        const value = Number($('resizeHeight').value);
+        $('resizeHeight').setAttribute('aria-invalid', Number.isInteger(value) && value >= 1 && value <= 20000 ? 'false' : 'true');
+      });
+
+      window.addEventListener('beforeunload', () => {
+        for (const job of jobs) {
+          releaseObjectUrl(job.sourceUrl);
+          releaseObjectUrl(job.resultUrl);
+        }
+        revokeActiveZipUrl();
+      });
+
+      configureSeoMetadata();
+      initializeTheme();
+      renderQueue();
+      initializeCapabilities().catch(() => {
+        initialized = false;
+        updateToolbar();
+        showNotice('브라우저 기능을 확인하지 못했습니다. 페이지를 새로고침한 뒤 다시 시도해 주세요.', 'error', true);
+      });
+    })();
+  </script>
+
+  <script>
+  (() => {
+    'use strict';
+    const $ = (id) => document.getElementById(id);
+    const status = (id, message, kind='') => {
+      const el = $(id); el.textContent = message;
+      if (kind) el.dataset.kind = kind; else el.removeAttribute('data-kind');
+    };
+    const saveFile = (blob, name) => {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href=url; a.download=name; a.style.display='none';
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 10000);
+    };
+    const getBase = (name) => (name || 'file').replace(/\.[^.]+$/, '').replace(/[\\/:*?"<>|]/g,'_').slice(0,100);
+    const pdfAction = $('pdfAction');
+    const pdfInput = $('pdfInput');
+    const pdfRun = $('pdfRun');
+    const togglePdfFields = () => {
+      const action = pdfAction.value;
+      $('pdfRangeWrap').hidden=action!=='extract';
+      $('pdfRotationWrap').hidden=action!=='rotate';
+      const imgs=action==='images';
+      pdfInput.accept = imgs ? '.png,.jpg,.jpeg,.webp,image/png,image/jpeg,image/webp' : '.pdf,application/pdf';
+      pdfInput.multiple = imgs || action==='merge';
+      pdfInput.value = '';
+      $('pdfLimit').textContent = imgs ? 'JPG·PNG·WebP 이미지를 선택하세요. 선택한 순서대로 A4 페이지 하나에 이미지 한 장을 배치합니다. 파일당 25MB, 합계 80MB 제한입니다.' : 'PDF 파일당 25MB, 합계 80MB 제한입니다. 암호화된 PDF는 지원하지 않습니다.';
+      status('pdfStatus','파일을 선택하고 PDF 작업 시작을 누르세요.');
+    };
+    pdfAction.addEventListener('change',togglePdfFields);
+    let libPromise;
+    function loadPdfLib() {
+      if (window.PDFLib?.PDFDocument) return Promise.resolve(window.PDFLib);
+      if (libPromise) return libPromise;
+      libPromise=new Promise((resolve,reject)=>{
+        const script=document.createElement('script');
+        script.src='https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js';
+        script.async=true;
+        script.onload=()=>window.PDFLib?.PDFDocument ? resolve(window.PDFLib) : reject(new Error('PDF 라이브러리를 불러오지 못했습니다.'));
+        script.onerror=()=>reject(new Error('PDF 라이브러리 다운로드 실패. 인터넷 연결이나 광고 차단 설정을 확인하세요.'));
+        document.head.appendChild(script);
+      }).catch(e=>{libPromise=null;throw e;});
+      return libPromise;
+    }
+    function parsePageRanges(text,total) {
+      if (!/^\s*\d+(?:\s*-\s*\d+)?(?:\s*,\s*\d+(?:\s*-\s*\d+)?)*\s*$/.test(text)) throw new Error('페이지를 1-3,5처럼 입력해 주세요.');
+      const indices=[];const seen=new Set();
+      for(const entry of text.split(',')){
+        const m=entry.trim().match(/^(\d+)(?:\s*-\s*(\d+))?$/);
+        const start=Number(m[1]);const end=m[2]?Number(m[2]):start;
+        if(start<1 || end<start || end>total) throw new Error(`페이지 번호는 1부터 ${total}까지이며 범위의 시작은 끝보다 작아야 합니다.`);
+        if(end-start>300) throw new Error('한 구간에서 최대 300페이지만 선택할 수 있습니다.');
+        for(let i=start;i<=end;i++){ if (!seen.has(i)) {seen.add(i);indices.push(i-1);} }
+      }
+      if(indices.length>300) throw new Error('한 번에 최대 300페이지만 추출할 수 있습니다.');
+      return indices;
+    }
+    function validateFiles(files,types) {
+      if(!files.length) throw new Error('작업할 파일을 선택하세요.');
+      if(files.length>30) throw new Error('한 번에 최대 30개 파일만 선택할 수 있습니다.');
+      if(files.some(f=>f.size>25*1024*1024)) throw new Error('25MB를 넘는 파일은 지원하지 않습니다.');
+      if(files.reduce((sum,f)=>sum+f.size,0)>80*1024*1024) throw new Error('합계 80MB를 넘는 파일은 지원하지 않습니다.');
+      if(files.some(f=>!types.test(f.type||'') && !types.test(f.name.toLowerCase()))) throw new Error('지원하지 않는 파일 형식이 포함됐습니다.');
+    }
+    pdfRun.addEventListener('click',async()=>{
+      const action=pdfAction.value;
+      const files=Array.from(pdfInput.files||[]);
+      try {
+        validateFiles(files,action==='images'?/(image\/(png|jpeg|webp)|\.(png|jpe?g|webp))$/i:/(application\/pdf|\.pdf)$/i);
+        if((action==='extract'||action==='rotate')&&files.length!==1) throw new Error('PDF 파일 한 개를 선택하세요.');
+        pdfRun.disabled=true;status('pdfStatus','라이브러리를 준비하고 파일을 처리하고 있습니다…','busy');
+        const { PDFDocument, degrees }=await loadPdfLib();
+        let out;let filename='filekit.pdf';
+        if(action==='merge') {
+          const target=await PDFDocument.create();let count=0;
+          for(const file of files){const doc=await PDFDocument.load(await file.arrayBuffer());const indices=doc.getPageIndices();
+            count+=indices.length;if(count>300)throw new Error('병합할 PDF는 총 300페이지 이하만 지원합니다.');
+            const pages=await target.copyPages(doc,indices);for(const page of pages)target.addPage(page);
+          }
+          out=await target.save();filename='filekit-merged.pdf';
+        } else if(action==='extract'){
+          const doc=await PDFDocument.load(await files[0].arrayBuffer());
+          const indices=parsePageRanges($('pdfRange').value,doc.getPageCount());
+          const target=await PDFDocument.create();const pages=await target.copyPages(doc,indices);pages.forEach(p=>target.addPage(p));
+          out=await target.save();filename=getBase(files[0].name)+'-selected.pdf';
+        } else if(action==='rotate'){
+          const doc=await PDFDocument.load(await files[0].arrayBuffer());
+          if(doc.getPageCount()>300)throw new Error('회전할 PDF는 300페이지 이하만 지원합니다.');
+          for(const page of doc.getPages()){page.setRotation(degrees((page.getRotation().angle+Number($('pdfRotation').value))%360));}
+          out=await doc.save();filename=getBase(files[0].name)+'-rotated.pdf';
+        } else {
+          const doc=await PDFDocument.create();
+          for(const file of files){
+            const type=(file.type||'').toLowerCase();
+            let bytes=await file.arrayBuffer();let image;
+            if(type==='image/webp'||/\.webp$/i.test(file.name)) {
+              const bmp=await createImageBitmap(file);
+              try {const cvs=document.createElement('canvas');if(bmp.width*bmp.height>24000000)throw new Error('24MP를 넘는 이미지는 PDF로 변환할 수 없습니다.');
+                cvs.width=bmp.width;cvs.height=bmp.height;const ctx=cvs.getContext('2d');ctx.fillStyle='#ffffff';ctx.fillRect(0,0,cvs.width,cvs.height);ctx.drawImage(bmp,0,0);
+                const jpg=await new Promise(res=>cvs.toBlob(res,'image/jpeg',0.9));if(!jpg)throw new Error('WebP를 JPG로 변환할 수 없습니다.');bytes=await jpg.arrayBuffer();
+              } finally {bmp.close();}
+              image=await doc.embedJpg(bytes);
+            } else if(type==='image/png'||/\.png$/i.test(file.name))image=await doc.embedPng(bytes);
+            else image=await doc.embedJpg(bytes);
+            const [w,h]=[595.28,841.89];const page=doc.addPage([w,h]);const scale=Math.min((w-48)/image.width,(h-48)/image.height);
+            const iw=image.width*scale,ih=image.height*scale;page.drawImage(image,{x:(w-iw)/2,y:(h-ih)/2,width:iw,height:ih});
+          }
+          out=await doc.save();filename='filekit-images.pdf';
+        }
+        if(out.byteLength>100*1024*1024)throw new Error('결과 PDF가 100MB를 초과했습니다.');
+        saveFile(new Blob([out],{type:'application/pdf'}),filename);
+        status('pdfStatus',`완료: ${filename} (${(out.byteLength/1024/1024).toFixed(2)}MB) 다운로드를 시작했습니다.`,'success');
+      } catch(err){status('pdfStatus',err?.message||'PDF를 처리할 수 없습니다. 파일이 손상됐거나 보호돼 있는지 확인해 주세요.','error');}
+      finally{pdfRun.disabled=false;}
+    });
+
+    const emojis=[
+      ['😀','웃음 행복 미소'],['😃','웃음 즐거움'],['😄','기쁨'],['😁','활짝 웃음'],['😆','폭소'],['😂','눈물 웃음'],['🤣','배꼽 웃음'],['😊','미소'],['🙂','웃음'],['🙃','장난'],['😉','윙크'],['😍','사랑 눈하트'],['🥰','사랑'],['😘','뽀뽀'],['😎','멋짐'],['🤔','생각'],['😴','잠'],['😢','슬픔'],['😭','울음'],['😡','화남'],['😱','놀람'],['🥳','축하 파티'],['🤩','반짝'],['🥹','감동'],['😇','천사'],['🤯','놀람'],
+      ['❤️','빨간 하트 사랑'],['🧡','주황 하트'],['💛','노란 하트'],['💚','초록 하트'],['💙','파란 하트'],['💜','보라 하트'],['🖤','검은 하트'],['🤍','흰 하트'],['💖','반짝 하트'],['💔','깨진 하트'],['💝','선물 하트'],['💕','두 하트'],['💗','커지는 하트'],
+      ['👍','좋아요 엄지'],['👎','싫어요'],['👏','박수'],['🙌','만세'],['🙏','부탁 감사'],['✌️','브이'],['👌','오케이'],['👋','인사 손'],['💪','근육 힘'],['🤝','악수'],['✍️','글쓰기'],['🎉','축하 파티'],['🎊','축하 색종이'],['🎂','케이크 생일'],['🎁','선물'],['🎈','풍선'],
+      ['🐱','고양이'],['🐶','강아지 개'],['🐰','토끼'],['🐻','곰'],['🦊','여우'],['🐼','판다'],['🐸','개구리'],['🐧','펭귄'],['🦋','나비'],['🐝','벌'],['🌸','벚꽃 꽃'],['🌹','장미'],['🌻','해바라기'],['🌷','튤립'],['🌳','나무'],['🌿','잎'],['🍀','클로버'],['⭐','별'],['🌟','빛나는 별'],['✨','반짝'],['🔥','불'],['⚡','번개'],['🌈','무지개'],['☀️','해 맑음'],['☁️','구름'],['🌙','달'],['❄️','눈'],['☔','비'],
+      ['🍕','피자'],['🍔','햄버거'],['🍟','감자튀김'],['🍣','초밥'],['🍉','수박'],['🍓','딸기'],['🍎','사과'],['🍌','바나나'],['🍦','아이스크림'],['☕','커피'],['🍰','케이크'],['🎮','게임'],['💻','노트북 컴퓨터'],['🖥️','컴퓨터 모니터'],['📱','휴대폰'],['⌨️','키보드'],['📷','카메라'],['🎧','헤드폰'],['🚀','로켓'],['🛠️','도구'],['📁','폴더'],['📄','문서'],['📎','클립'],['✅','완료 체크'],['❌','엑스'],['⚠️','경고'],['💡','아이디어'],['🔎','검색'],['📝','메모']
+    ];
+    function renderEmojis(){
+      const query=$('emojiSearch').value.toLowerCase().trim();const grid=$('emojiGrid');const fragment=document.createDocumentFragment();let count=0;
+      for(const [emoji,keywords] of emojis){if(query&&!keywords.includes(query)&&!emoji.includes(query))continue;
+        const button=document.createElement('button');button.type='button';button.className='kit-emoji';button.title=keywords;button.setAttribute('aria-label',`${keywords} 복사`);button.textContent=emoji;fragment.appendChild(button);count++;
+      }
+      grid.replaceChildren(fragment);
+      if(!count)status('emojiStatus','일치하는 이모지가 없습니다. 다른 단어로 검색해 보세요.');
+      else status('emojiStatus',`${count}개 이모지 · 클릭하면 복사됩니다.`);
+    }
+    $('emojiSearch').addEventListener('input',renderEmojis);
+    $('emojiGrid').addEventListener('click',async(e)=>{
+      const button=e.target.closest('button.kit-emoji');if(!button)return;
+      try{await navigator.clipboard.writeText(button.textContent);status('emojiStatus',`${button.textContent} 복사했습니다.`,'success');}
+      catch{const ta=document.createElement('textarea');ta.value=button.textContent;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();const ok=document.execCommand('copy');ta.remove();status('emojiStatus',ok?`${button.textContent} 복사했습니다.`:'복사할 수 없습니다. 브라우저 권한을 확인해 주세요.',ok?'success':'error');}
+    });
+    renderEmojis();
+
+    $('bgTolerance').addEventListener('input',()=>{$('bgToleranceValue').textContent=$('bgTolerance').value;});
+    let bgUrls=[];
+    function clearBgUrls(){for(const url of bgUrls)URL.revokeObjectURL(url);bgUrls=[];}
+    const bgRun=$('bgRun');
+    bgRun.addEventListener('click',async()=>{
+      const file=$('bgInput').files?.[0];
+      if(!file||!/(image\/(jpeg|png|webp)|\.(jpe?g|png|webp))$/i.test(file.type||'') && !/\.(jpe?g|png|webp)$/i.test(file.name))return status('bgStatus','JPG·PNG·WebP 파일을 선택하세요.','error');
+      if(file.size>25*1024*1024)return status('bgStatus','이미지는 25MB 이하여야 합니다.','error');
+      bgRun.disabled=true;status('bgStatus','모서리와 연결된 유사 색상을 분석하고 있습니다…','busy');
+      let bitmap;
+      try{
+        bitmap=await createImageBitmap(file);const w=bitmap.width,h=bitmap.height,n=w*h;
+        if(!w||!h||n>9000000)throw new Error('이미지는 900만 픽셀 이하만 지원합니다.');
+        const cvs=document.createElement('canvas');cvs.width=w;cvs.height=h;
+        const ctx=cvs.getContext('2d',{willReadFrequently:true});ctx.drawImage(bitmap,0,0);
+        const pixels=ctx.getImageData(0,0,w,h),data=pixels.data;
+        const refs=[0,w-1,(h-1)*w,n-1].map(i=>[data[i*4],data[i*4+1],data[i*4+2]]);
+        const tol=Number($('bgTolerance').value);
+        // Pick the dominant corner color by finding the corner with the most similar peers.
+        let anchor=refs[0],best=-1;
+        for(const c of refs){let score=0;for(const d of refs){const dist=Math.hypot(c[0]-d[0],c[1]-d[1],c[2]-d[2]);if(dist<Math.max(22,tol))score++;}if(score>best){anchor=c;best=score;}}
+        const threshold=tol*1.65,vis=new Uint8Array(n),queue=new Int32Array(n);let head=0,tail=0,removed=0;
+        const match=(i)=>{const o=i*4;const dr=data[o]-anchor[0],dg=data[o+1]-anchor[1],db=data[o+2]-anchor[2];return (dr*dr+dg*dg+db*db)<=threshold*threshold;};
+        const push=(i)=>{if(vis[i])return;vis[i]=1;if(match(i))queue[tail++]=i;};
+        for(let x=0;x<w;x++){push(x);push((h-1)*w+x);}
+        for(let y=0;y<h;y++){push(y*w);push(y*w+w-1);}
+        while(head<tail){const i=queue[head++],o=i*4;data[o+3]=0;removed++;const x=i%w;
+          if(x>0)push(i-1);if(x+1<w)push(i+1);if(i>=w)push(i-w);if(i<n-w)push(i+w);
+        }
+        ctx.putImageData(pixels,0,0);
+        const png=await new Promise((resolve,reject)=>cvs.toBlob(b=>b?resolve(b):reject(new Error('PNG 저장에 실패했습니다.')),'image/png'));
+        clearBgUrls();const before=URL.createObjectURL(file),after=URL.createObjectURL(png);bgUrls=[before,after];
+        $('bgBefore').src=before;$('bgAfter').src=after;$('bgPreview').hidden=false;
+        saveFile(png,getBase(file.name)+'-transparent.png');
+        status('bgStatus',`완료: 전체 픽셀의 ${(removed/n*100).toFixed(1)}%를 투명하게 처리했습니다. 결과가 정확하지 않으면 허용 차이를 조정해 주세요.`,'success');
+      } catch(e){status('bgStatus',e?.message||'이미지 처리에 실패했습니다.','error');}
+      finally{if(bitmap)bitmap.close();bgRun.disabled=false;}
+    });
+    window.addEventListener('pagehide',clearBgUrls);
+  })();
+  </script>
+
+  <script>
+(()=>{
+'use strict';
+const $=id=>document.getElementById(id);
+const URL_BASE='https://filekit-9c7.pages.dev/';
+const categories=[['popular','추천 도구'],['convert','이미지 형식 변환'],['compress','이미지 압축'],['resize','이미지 크기 변경'],['geometry','이미지 회전·자르기'],['effect','이미지 필터'],['pdf','PDF 도구'],['text','텍스트 도구'],['color','색상 도구'],['file','파일 검사']];
+const tools=[];
+const add=(id,name,category,desc,mode,preset,icon)=>{if(tools.some(t=>t.id===id))throw Error('Duplicate tool id: '+id);tools.push({id,name,category,desc,mode,preset,icon:icon||({convert:'⇄',compress:'↓',resize:'↗',geometry:'▧',effect:'◐',pdf:'PDF',text:'T',color:'◉',file:'i'}[category]||'◈')});};
+const fmts=[['jpg','JPG','image/jpeg'],['png','PNG','image/png'],['webp','WebP','image/webp'],['bmp','BMP','image/bmp'],['gif','GIF','image/gif'],['avif','AVIF','image/avif']];
+for(const from of fmts)for(const to of fmts.slice(0,3)){if(from[0]===to[0])continue;add('convert-'+from[0]+'-'+to[0],from[1]+' → '+to[1],'convert',`${from[1]} 이미지를 ${to[1]} 형식으로 저장합니다.`, 'image',{operation:'convert',from:from[0],type:to[2],extension:to[0]});}
+for(const fmt of [['jpg','JPG','image/jpeg'],['webp','WebP','image/webp']])for(const quality of [35,50,65,80,90])add('compress-'+fmt[0]+'-'+quality,fmt[1]+' 품질 '+quality+'%','compress',`${quality}% 인코딩 품질로 ${fmt[1]} 이미지를 만듭니다. 실제 용량은 이미지에 따라 달라집니다.`,'image',{operation:'compress',type:fmt[2],quality:quality/100,extension:fmt[0]});
+for(const pct of [25,50,75,125,150,200])add('size-pct-'+pct,'이미지 '+pct+'% 크기','resize',`가로와 세로를 원본의 ${pct}%로 조정합니다.`,'image',{operation:'resize',factor:pct/100});
+for(const width of [320,640,800,1024,1280,1920,2560])add('size-width-'+width,'너비 '+width+'px','resize',`가로를 ${width}px로 조절하고 비율을 유지합니다.`,'image',{operation:'resize',width});
+for(const height of [480,720,1080,1920])add('size-height-'+height,'높이 '+height+'px','resize',`세로를 ${height}px로 조절하고 비율을 유지합니다.`,'image',{operation:'resize',height});
+for(const [k,label,r] of [['square','1:1 정사각형',1],['landscape43','가로 4:3',4/3],['portrait34','세로 3:4',3/4],['landscape169','가로 16:9',16/9],['portrait916','세로 9:16',9/16],['landscape32','가로 3:2',3/2],['portrait23','세로 2:3',2/3]])add('crop-'+k,label+' 중앙 자르기','geometry',`이미지 중앙을 ${label} 비율로 자릅니다.`,'image',{operation:'crop',ratio:r});
+for(const [k,label,bg] of [['white','흰색','#ffffff'],['black','검정색','#000000'],['transparent','투명','transparent']])add('fit-square-'+k,'정사각형 여백 ('+label+')','geometry','이미지 전체를 유지하고 1:1 정사각형 안에 맞춥니다.','image',{operation:'fit',bg});
+for(const [k,label,v] of [['right','오른쪽 90°',90],['down','180°',180],['left','왼쪽 90°',270]])add('rotate-'+k,'이미지 '+label+' 회전','geometry','이미지 전체를 회전해 새 파일로 저장합니다.','image',{operation:'rotate',angle:v});
+add('flip-horizontal','좌우 반전','geometry','이미지를 좌우로 반전합니다.','image',{operation:'flip',axis:'x'});
+add('flip-vertical','상하 반전','geometry','이미지를 상하로 반전합니다.','image',{operation:'flip',axis:'y'});
+const filters=[
+ ['gray','흑백','grayscale(1)'],['sepia','세피아','sepia(1)'],['invert','색 반전','invert(1)'],
+ ['bright120','밝기 +20%','brightness(1.2)'],['bright150','밝기 +50%','brightness(1.5)'],['bright80','밝기 -20%','brightness(.8)'],
+ ['contrast120','대비 +20%','contrast(1.2)'],['contrast150','대비 +50%','contrast(1.5)'],['contrast80','대비 -20%','contrast(.8)'],
+ ['sat150','채도 +50%','saturate(1.5)'],['sat200','채도 +100%','saturate(2)'],['sat50','채도 -50%','saturate(.5)'],
+ ['blur2','흐림 2px','blur(2px)'],['blur5','흐림 5px','blur(5px)'],
+ ['hue90','색조 +90°','hue-rotate(90deg)'],['hue180','색조 +180°','hue-rotate(180deg)'],['hue270','색조 +270°','hue-rotate(270deg)'],
+ ['mono-strong','고대비 흑백','grayscale(1) contrast(1.65)'],['soft','부드러운 색감','contrast(.87) saturate(.88) brightness(1.07)'],
+ ['retro','레트로','sepia(.45) contrast(1.12) saturate(.75)'],['cool','차가운 느낌','saturate(.95) hue-rotate(12deg)'],['warm','따뜻한 느낌','sepia(.26) saturate(1.3)'],
+ ['fade','바랜 사진','contrast(.78) saturate(.65) brightness(1.15)'],['dramatic','강한 대비','contrast(1.75) saturate(1.2)'],
+ ['red','붉은 색조','sepia(1) saturate(2) hue-rotate(300deg)'],['blue','푸른 색조','sepia(1) saturate(1.8) hue-rotate(168deg)']
+];
+for(const [k,label,filter] of filters)add('fx-'+k,label+' 필터','effect',`${label} 효과를 이미지에 적용합니다.`,'image',{operation:'filter',filter});
+for(const [k,label] of [['threshold','흑백 이진화'],['posterize','포스터 색상'],['pixel8','8px 픽셀화'],['pixel16','16px 픽셀화'],['solar','솔라라이즈'],['noise','필름 그레인'],['vignette','비네트'],['sharpen','선명하게'],['edge','윤곽선 감지'],['emboss','양각 효과'],['opacity','50% 투명도']])add('fx-'+k,label,'effect',`${label} 효과를 이미지에 적용합니다.`,'image',{operation:'special',effect:k});
+// Existing v2.0 implementations remain in the page, not reimplemented here.
+for(const [id,name,section,choice,desc] of [
+ ['legacy-image','고급 이미지 압축·일괄 변환','workspace',null,'목표 KB 크기, 일괄 변환, ZIP 저장, 전후 비교를 사용할 수 있습니다.'],
+ ['legacy-merge','PDF 파일 합치기','pdf-tools','merge','여러 PDF를 하나로 합칩니다.'],
+ ['legacy-extract','PDF 페이지 추출','pdf-tools','extract','1-3,5와 같이 원하는 페이지를 지정해 추출합니다.'],
+ ['legacy-rotate','PDF 페이지 회전','pdf-tools','rotate','PDF 페이지를 90°, 180°, 270° 회전합니다.'],
+ ['legacy-images','이미지 → PDF','pdf-tools','images','여러 JPG·PNG·WebP 이미지를 PDF로 묶습니다.'],
+ ['legacy-bg','단색 배경 투명화','background-tool',null,'단색 배경을 제거하고 투명 PNG로 저장합니다.'],
+ ['legacy-emoji','이모지 검색·복사','emoji-kit',null,'이모지를 검색하고 클립보드에 복사합니다.']
+])add(id,name, section==='pdf-tools'?'pdf':section==='emoji-kit'?'text':'popular',desc,'legacy',{section,choice},'↗');
+const textTools=[
+ ['upper','대문자로 변환'],['lower','소문자로 변환'],['title','단어 첫 글자 대문자'],['sentence','문장 첫 글자 대문자'],['trim','앞뒤 공백 제거'],
+ ['spaces','연속 공백 정리'],['empty','빈 줄 삭제'],['unique','중복 줄 제거'],['sort','줄 오름차순 정렬'],['sortdesc','줄 내림차순 정렬'],
+ ['reverse-lines','줄 순서 뒤집기'],['reverse-chars','글자 순서 뒤집기'],['count','글자·단어·줄 수 세기'],['line-numbers','줄 번호 붙이기'],['unline','줄 번호 제거'],
+ ['slug','영문 URL 슬러그'],['snake','snake_case 변환'],['kebab','kebab-case 변환'],['camel','camelCase 변환'],['pascal','PascalCase 변환'],
+ ['tabs','탭을 공백 4칸으로'],['spaces-to-tabs','공백 4칸을 탭으로'],['newline-space','줄바꿈을 공백으로'],['split-words','공백을 줄바꿈으로'],
+ ['escape-html','HTML 특수문자 인코딩'],['unescape-html','HTML 특수문자 디코딩'],['urlencode','URL 인코딩'],['urldecode','URL 디코딩'],
+ ['base64','Base64 인코딩'],['unbase64','Base64 디코딩'],['rot13','ROT13 변환'],['pretty','JSON 예쁘게 정리'],['minify','JSON 공백 제거'],['validate','JSON 문법 검사'],
+ ['csv-json','CSV → JSON'],['json-csv','JSON → CSV'],['remove-punctuation','문장부호 제거'],['extract-urls','URL만 추출'],['extract-emails','이메일만 추출'],['sha256','SHA-256 텍스트 해시']
+];
+for(const [id,label] of textTools)add('text-'+id,label,'text',`${label} 작업을 브라우저에서 실행합니다.`,'text',{action:id});
+const colorTools=[
+ ['rgb','HEX → RGB'],['hsl','HEX → HSL'],['hsv','HEX → HSV'],['complement','보색 찾기'],['inverse','반전 색상'],['light10','10% 밝게'],['light30','30% 밝게'],['dark10','10% 어둡게'],['dark30','30% 어둡게'],['analogous','유사색 조합'],['triad','삼원색 조합'],['palette','명도 팔레트 7색'],['contrast','읽기 쉬운 글자색'],['css','CSS 색상 변수 만들기']
+];
+for(const [id,label] of colorTools)add('color-'+id,label,'color',`${label} 계산과 CSS 값 확인`,'color',{action:id});
+for(const [id,label] of [['meta','파일 정보 확인'],['hash','파일 SHA-256'],['base64','파일 Base64 인코딩'],['header','파일 앞부분 HEX 보기'],['dataurl','이미지 Data URL 만들기']])add('file-'+id,label,'file',`${label}를 기기 안에서 실행합니다.`,'file',{action:id});
+const categoryTitle=id=>categories.find(c=>c[0]===id)?.[1]||id;
+const cardIcons={popular:'✦',convert:'⇄',compress:'↓',resize:'↗',geometry:'▧',effect:'◐',pdf:'PDF',text:'T',color:'◉',file:'i'};
+let current=null,category='all',previewURL=null,outputBlob=null,outputName='',lastText='',lastColor='';
+const legacyRoot=$('fk-classic-root'),dashRoot=$('fk-dashboard-root');
+function safeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function renderCategories(){const box=$('fk-categories');box.replaceChildren();for(const [id,label] of [['all','모두 보기'],...categories]){let count=id==='all'?tools.length:tools.filter(t=>t.category===id).length;let b=document.createElement('button');b.type='button';b.textContent=`${label} ${count}`;b.setAttribute('aria-pressed',String(category===id));b.addEventListener('click',()=>{category=id;renderCategories();renderCards();});box.append(b);}}
+function renderCards(){const term=$('fk-search').value.trim().toLocaleLowerCase();const matched=tools.filter(t=>(category==='all'||category===t.category)&&(t.name+' '+t.desc+' '+categoryTitle(t.category)).toLocaleLowerCase().includes(term));const groups=$('fk-groups');groups.replaceChildren();if(!matched.length){let p=document.createElement('div');p.className='fk-empty';p.textContent='검색 결과가 없습니다. 다른 단어를 입력해 보세요.';groups.append(p);return;}
+for(const [cid,header] of categories){let list=matched.filter(t=>t.category===cid);if(!list.length)continue;const section=document.createElement('section');section.className='fk-group';section.setAttribute('aria-label',header);const head=document.createElement('div');head.className='fk-group-head';const h=document.createElement('h2');h.textContent=header;const meta=document.createElement('span');meta.textContent=list.length+'개';head.append(h,meta);const grid=document.createElement('div');grid.className='fk-grid';for(const t of list){const btn=document.createElement('button');btn.type='button';btn.className='fk-card';btn.dataset.tool=t.id;btn.innerHTML=`<span class="fk-card-icon" aria-hidden="true">${safeHtml(t.icon)}</span><strong>${safeHtml(t.name)}</strong><span class="fk-card-desc">${safeHtml(t.desc)}</span>`;btn.addEventListener('click',()=>showTool(t.id));grid.append(btn);}section.append(head,grid);groups.append(section);}}
+function clearPreview(){if(previewURL){URL.revokeObjectURL(previewURL);previewURL=null;}outputBlob=null;outputName='';$('fk-image-preview').hidden=true;$('fk-image-download').hidden=true;$('fk-image-status').textContent='';$('fk-image-status').removeAttribute('data-error');}
+function showCatalog(){current=null;clearPreview();dashRoot.hidden=false;legacyRoot.hidden=true;$('fk-browser').hidden=false;$('fk-detail').hidden=true;$('fk-search').focus({preventScroll:true});window.scrollTo({top:0,behavior:'instant'});if(location.hash.startsWith('#tool='))try{history.replaceState(null,'',location.pathname+location.search);}catch{}}
+function showTool(id){const t=tools.find(x=>x.id===id);if(!t)return;current=t;clearPreview();if(t.mode==='legacy'){dashRoot.hidden=true;legacyRoot.hidden=false;for(const id of ['workspace','pdf-tools','background-tool','emoji-kit','features','how-to','faq']){const element=$(id);if(element)element.hidden=!([t.preset.section].includes(id));}if(t.preset.section==='pdf-tools'&&t.preset.choice){$('pdfAction').value=t.preset.choice;$('pdfAction').dispatchEvent(new Event('change'));}window.scrollTo({top:0,behavior:'instant'});}else{dashRoot.hidden=false;legacyRoot.hidden=true;$('fk-browser').hidden=true;$('fk-detail').hidden=false;$('fk-tool-title').textContent=t.name;$('fk-tool-description').textContent=t.desc;$('fk-tool-category').textContent=categoryTitle(t.category);for(const type of ['image','text','color','file'])$('fk-'+type+'-ui').hidden=t.mode!==type;if(t.mode==='image'){$('fk-image-input').value='';$('fk-image-status').textContent='';}if(t.mode==='text'){$('fk-text-output').value='';$('fk-text-status').textContent='';}if(t.mode==='file'){$('fk-file-input').value='';$('fk-file-output').textContent='';$('fk-file-status').textContent='';}if(t.mode==='color')runColor();window.scrollTo({top:0,behavior:'instant'});}try{history.replaceState(null,'',location.pathname+location.search+'#tool='+encodeURIComponent(id));}catch{}}
+const showError=(id,err)=>{const el=$(id);el.textContent=err?.message||String(err);el.dataset.error='true';};
+const showOK=(id,msg)=>{const el=$(id);el.textContent=msg;el.removeAttribute('data-error');};
+const blobSave=(blob,name)=>{const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),15000);};
+const extName=name=>name.replace(/\.[^.]+$/,'').replace(/[\\/:*?"<>|]/g,'_').slice(0,90)||'file';
+$('fk-tool-count').textContent=tools.length;
+$('fk-search').addEventListener('input',renderCards);
+$('fk-back').addEventListener('click',showCatalog);
+$('fk-classic-back').addEventListener('click',showCatalog);
+$('fk-image-input').addEventListener('change',clearPreview);
+renderCategories();renderCards();
+const pngType='image/png';
+async function loadImage(file){if(file.size>25*1024*1024)throw Error('파일이 25MB를 넘었습니다. 더 작은 파일을 선택하세요.');if(!/^image\//.test(file.type)&&!(/\.(png|jpe?g|webp|bmp|gif|avif)$/i.test(file.name)))throw Error('이미지 파일을 선택하세요.');return new Promise((resolve,reject)=>{const u=URL.createObjectURL(file);const img=new Image();img.onload=()=>{URL.revokeObjectURL(u);if(!img.naturalWidth||!img.naturalHeight){reject(Error('이미지 크기를 읽을 수 없습니다.'));return;}resolve(img)};img.onerror=()=>{URL.revokeObjectURL(u);reject(Error('이 브라우저가 이미지를 열지 못했습니다.'));};img.src=u;});}
+const extFromMime=type=>({'image/png':'png','image/jpeg':'jpg','image/webp':'webp'}[type]||'png');
+function canvasMake(w,h){w=Math.round(w);h=Math.round(h);if(!Number.isFinite(w)||!Number.isFinite(h)||w<1||h<1||w>16000||h>16000||w*h>24000000)throw Error('출력 이미지가 너무 큽니다. 가로·세로 16,000px, 총 2,400만 픽셀 이내로 설정하세요.');const c=document.createElement('canvas');c.width=w;c.height=h;return c;}
+async function toBlob(canvas,mime,quality){return new Promise((resolve,reject)=>canvas.toBlob(b=>{if(!b){reject(Error('이미지 인코딩에 실패했습니다.'));return;}if(b.type!==mime){reject(Error('이 브라우저는 '+mime+' 형식으로 저장할 수 없습니다.'));return;}resolve(b);},mime,quality));}
+function mimeFromFilename(file){let ext=file.name.split('.').pop().toLowerCase();if(ext==='jpeg')ext='jpg';return ext;}
+function imageCanvas(img,preset){const iw=img.naturalWidth,ih=img.naturalHeight;if(iw*ih>48000000)throw Error('원본 이미지가 4,800만 픽셀을 넘습니다.');let w=iw,h=ih,sx=0,sy=0,sw=iw,sh=ih;const op=preset.operation;let outputMime=preset.type||pngType;let quality=preset.quality??.92;
+if(op==='resize'){if(preset.factor){w=iw*preset.factor;h=ih*preset.factor;}if(preset.width){w=preset.width;h=ih*w/iw;}if(preset.height){h=preset.height;w=iw*h/ih;}}
+if(op==='crop'){const src=iw/ih;if(src>preset.ratio){sw=ih*preset.ratio;sx=(iw-sw)/2;}else{sh=iw/preset.ratio;sy=(ih-sh)/2;}w=sw;h=sh;}
+if(op==='rotate'&&preset.angle%180!==0){w=ih;h=iw;}
+if(op==='fit'){w=1024;h=1024;}
+if(op==='special'&&preset.effect==='pixel8'){w=iw;h=ih;}
+let cv=canvasMake(w,h),ctx=cv.getContext('2d',{willReadFrequently:op==='special'});if(!ctx)throw Error('Canvas 기능을 사용할 수 없습니다.');
+if(outputMime==='image/jpeg'||preset.bg&&preset.bg!=='transparent'){ctx.fillStyle=preset.bg&&preset.bg!=='transparent'?preset.bg:'#ffffff';ctx.fillRect(0,0,cv.width,cv.height);}
+if(op==='rotate'){ctx.translate(cv.width/2,cv.height/2);ctx.rotate(preset.angle*Math.PI/180);ctx.drawImage(img,-iw/2,-ih/2,iw,ih);}
+else if(op==='flip'){if(preset.axis==='x'){ctx.translate(cv.width,0);ctx.scale(-1,1);}else{ctx.translate(0,cv.height);ctx.scale(1,-1);}ctx.drawImage(img,0,0,cv.width,cv.height);}
+else if(op==='fit'){const scale=Math.min(cv.width/iw,cv.height/ih);let dw=Math.max(1,Math.round(iw*scale)),dh=Math.max(1,Math.round(ih*scale));ctx.drawImage(img,(1024-dw)/2,(1024-dh)/2,dw,dh);}
+else{if(op==='filter')ctx.filter=preset.filter;if(op==='special'&&preset.effect==='opacity')ctx.globalAlpha=.5;ctx.drawImage(img,sx,sy,sw,sh,0,0,cv.width,cv.height);ctx.filter='none';}
+if(op==='special'&&preset.effect!=='opacity')applyImageEffect(cv,preset.effect);
+return {canvas:cv,type:outputMime,quality};}
+function applyImageEffect(canvas,fx){let ctx=canvas.getContext('2d',{willReadFrequently:true}),w=canvas.width,h=canvas.height;
+if(fx==='pixel8'||fx==='pixel16'){const scale=fx==='pixel8'?8:16,sm=document.createElement('canvas');sm.width=Math.max(1,Math.ceil(w/scale));sm.height=Math.max(1,Math.ceil(h/scale));sm.getContext('2d').drawImage(canvas,0,0,sm.width,sm.height);ctx.clearRect(0,0,w,h);ctx.imageSmoothingEnabled=false;ctx.drawImage(sm,0,0,sm.width,sm.height,0,0,w,h);ctx.imageSmoothingEnabled=true;return;}
+const im=ctx.getImageData(0,0,w,h),a=im.data,src=new Uint8ClampedArray(a);
+if(['sharpen','edge','emboss'].includes(fx)){
+ const kernel=fx==='sharpen'?[0,-1,0,-1,5,-1,0,-1,0]:fx==='edge'?[-1,-1,-1,-1,8,-1,-1,-1,-1]:[-2,-1,0,-1,1,1,0,1,2];
+ for(let y=1;y<h-1;y++)for(let x=1;x<w-1;x++){const idx=(y*w+x)*4;for(let c=0;c<3;c++){let sum=0;for(let ky=-1;ky<=1;ky++)for(let kx=-1;kx<=1;kx++)sum+=src[((y+ky)*w+x+kx)*4+c]*kernel[(ky+1)*3+kx+1];a[idx+c]=sum+(fx==='emboss'?128:0);}}ctx.putImageData(im,0,0);return;
+}
+for(let i=0;i<a.length;i+=4){let r=a[i],g=a[i+1],b=a[i+2];if(fx==='threshold'){let v=(.2126*r+.7152*g+.0722*b)>128?255:0;r=g=b=v;}
+else if(fx==='posterize'){r=Math.round(r/85)*85;g=Math.round(g/85)*85;b=Math.round(b/85)*85;}
+else if(fx==='solar'){r=r>128?255-r:r;g=g>128?255-g:g;b=b>128?255-b:b;}
+else if(fx==='noise'){let n=(Math.random()-.5)*42;r+=n;g+=n;b+=n;}
+else if(fx==='vignette'){let pix=i/4,x=pix%w,y=Math.floor(pix/w),dx=(x-w/2)/(w/2),dy=(y-h/2)/(h/2),v=Math.max(.28,1-.53*(dx*dx+dy*dy));r*=v;g*=v;b*=v;}
+a[i]=r;a[i+1]=g;a[i+2]=b;}
+ctx.putImageData(im,0,0);
+}
+$('fk-image-run').addEventListener('click',async()=>{
+const t=current,files=$('fk-image-input').files;if(t?.mode!=='image'||!files?.length){showError('fk-image-status',Error('이미지 파일을 먼저 선택하세요.'));return;}
+const btn=$('fk-image-run');btn.disabled=true;clearPreview();try{const file=files[0],preset=t.preset;
+if(preset.operation==='convert'&&mimeFromFilename(file)!==preset.from)throw Error(`이 도구는 ${preset.from.toUpperCase()} 입력 파일용입니다. 다른 형식은 해당 변환 도구를 선택하세요.`);
+showOK('fk-image-status','이미지를 처리하는 중입니다…');await new Promise(r=>requestAnimationFrame(()=>setTimeout(r,0)));
+const img=await loadImage(file),{canvas,type,quality}=imageCanvas(img,preset),blob=await toBlob(canvas,type,quality);
+outputBlob=blob;outputName=extName(file.name)+'-'+t.id+'.'+extFromMime(type);previewURL=URL.createObjectURL(blob);
+$('fk-image-preview-img').src=previewURL;$('fk-image-result-meta').textContent=`${canvas.width} × ${canvas.height}px · ${(blob.size/1024).toFixed(1)} KB · ${type.replace('image/','').toUpperCase()}`;
+$('fk-image-preview').hidden=false;$('fk-image-download').hidden=false;showOK('fk-image-status','처리 완료. 결과를 확인하고 다운로드하세요.');}
+catch(e){showError('fk-image-status',e);}finally{btn.disabled=false;}
+});
+$('fk-image-download').addEventListener('click',()=>{if(outputBlob)blobSave(outputBlob,outputName);});
+function wordsOf(s){return s.normalize('NFKC').trim().replace(/([a-z\d])([A-Z])/g,'$1 $2').split(/[\s_\-]+/).filter(Boolean);}
+function unicodeReverse(s){if(typeof Intl.Segmenter==='function')return Array.from(new Intl.Segmenter('ko',{granularity:'grapheme'}).segment(s),e=>e.segment).reverse().join('');return Array.from(s).reverse().join('');}
+function csvRows(s){let rows=[],row=[],field='',quoted=false;for(let i=0;i<s.length;i++){const ch=s[i];if(ch==='"'){if(quoted&&s[i+1]==='"'){field+='"';i++;}else quoted=!quoted;}else if(ch===','&&!quoted){row.push(field);field='';}else if((ch==='\n'||ch==='\r')&&!quoted){if(ch==='\r'&&s[i+1]==='\n')i++;row.push(field);rows.push(row);row=[];field='';}else field+=ch;}if(quoted)throw Error('CSV 따옴표가 닫히지 않았습니다.');if(row.length||field!==''){row.push(field);rows.push(row);}return rows;}
+function makeCSVCell(s){s=String(s??'');return /[",\r\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s;}
+const htmlEscape=s=>s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function decodeHTML(s){const named={amp:'&',lt:'<',gt:'>',quot:'\"',apos:"'",nbsp:'\u00a0'};return s.replace(/&(#x[0-9a-f]+|#\d+|amp|lt|gt|quot|apos|nbsp);/gi,(whole,code)=>{if(code[0]!=='#')return named[code.toLowerCase()]??whole;const n=code[1]?.toLowerCase()==='x'?parseInt(code.slice(2),16):parseInt(code.slice(1),10);return Number.isFinite(n)&&n>=0&&n<=0x10ffff?String.fromCodePoint(n):whole;});}
+function toBase64(str){let bytes=new TextEncoder().encode(str),out='';for(let i=0;i<bytes.length;i+=0x8000)out+=String.fromCharCode(...bytes.subarray(i,i+0x8000));return btoa(out);}
+function fromBase64(str){const binary=atob(str.trim().replace(/\s/g,'')),bytes=Uint8Array.from(binary,c=>c.charCodeAt(0));return new TextDecoder('utf-8',{fatal:true}).decode(bytes);}
+async function sha256(bytes){if(!crypto?.subtle)throw Error('SHA-256은 HTTPS 환경에서만 사용 가능합니다.');const ab=await crypto.subtle.digest('SHA-256',bytes);return Array.from(new Uint8Array(ab),b=>b.toString(16).padStart(2,'0')).join('');}
+async function runTextAction(id,s){const lines=s.split(/\r?\n/);switch(id){
+case 'upper':return s.toLocaleUpperCase();case 'lower':return s.toLocaleLowerCase();
+case 'title':return s.toLocaleLowerCase().replace(/(^|[^\p{L}\p{N}])(\p{L})/gu,(m,p,c)=>p+c.toLocaleUpperCase());
+case 'sentence':return s.toLocaleLowerCase().replace(/(^|[.!?]\s+)(\p{L})/gu,(m,p,c)=>p+c.toLocaleUpperCase());
+case 'trim':return s.trim();case 'spaces':return s.replace(/[ \t]+/g,' ').replace(/ *\n */g,'\n');
+case 'empty':return lines.filter(l=>l.trim()).join('\n');case 'unique':return Array.from(new Set(lines)).join('\n');
+case 'sort':return lines.sort((a,b)=>a.localeCompare(b,'ko')).join('\n');case 'sortdesc':return lines.sort((a,b)=>b.localeCompare(a,'ko')).join('\n');
+case 'reverse-lines':return lines.reverse().join('\n');case 'reverse-chars':return unicodeReverse(s);
+case 'count':{const segments=typeof Intl.Segmenter==='function'?Array.from(new Intl.Segmenter('ko',{granularity:'grapheme'}).segment(s)).length:Array.from(s).length;return `글자 수 (공백 포함): ${segments}\n공백 제외 글자 수: ${Array.from(s.replace(/\s/g,'')).length}\n단어 수: ${s.trim()?s.trim().split(/\s+/u).length:0}\n줄 수: ${lines.length}\nUTF-8 바이트: ${new TextEncoder().encode(s).length}`;}
+case 'line-numbers':return lines.map((l,i)=>`${i+1}. ${l}`).join('\n');case 'unline':return lines.map(l=>l.replace(/^\s*\d+[.)]\s*/, '')).join('\n');
+case 'slug':return wordsOf(s).join('-').toLowerCase().replace(/[^a-z\d-]+/g,'').replace(/--+/g,'-').replace(/^-|-$/g,'');
+case 'snake':return wordsOf(s).join('_').toLowerCase();case 'kebab':return wordsOf(s).join('-').toLowerCase();
+case 'camel':{const w=wordsOf(s).map(x=>x.toLowerCase());return w.map((a,i)=>i?a[0].toUpperCase()+a.slice(1):a).join('');}
+case 'pascal':return wordsOf(s).map(a=>a[0].toUpperCase()+a.slice(1).toLowerCase()).join('');
+case 'tabs':return s.replace(/\t/g,'    ');case 'spaces-to-tabs':return s.replace(/ {4}/g,'\t');
+case 'newline-space':return s.replace(/\r?\n/g,' ');case 'split-words':return s.trim().split(/\s+/).join('\n');
+case 'escape-html':return htmlEscape(s);case 'unescape-html':return decodeHTML(s);
+case 'urlencode':return encodeURIComponent(s);case 'urldecode':return decodeURIComponent(s);
+case 'base64':return toBase64(s);case 'unbase64':return fromBase64(s);
+case 'rot13':return s.replace(/[a-z]/gi,c=>String.fromCharCode(c.charCodeAt(0)+(c.toLowerCase()<='m'?13:-13)));
+case 'pretty':return JSON.stringify(JSON.parse(s),null,2);case 'minify':return JSON.stringify(JSON.parse(s));
+case 'validate':{JSON.parse(s);return '올바른 JSON 형식입니다.';}
+case 'csv-json':{const data=csvRows(s);if(!data.length)return '[]';const [keys,...body]=data;return JSON.stringify(body.filter(r=>r.some(c=>c!=='')).map(row=>Object.fromEntries(keys.map((k,i)=>[k||`column${i+1}`,row[i]??'']))),null,2);}
+case 'json-csv':{const parsed=JSON.parse(s);if(!Array.isArray(parsed))throw Error('JSON 배열을 입력해 주세요.');const keys=Array.from(new Set(parsed.flatMap(o=>o&&typeof o==='object'&&!Array.isArray(o)?Object.keys(o):[])));if(!keys.length)throw Error('객체들의 배열을 입력해 주세요.');return [keys.map(makeCSVCell).join(','),...parsed.map(o=>keys.map(k=>makeCSVCell(o?.[k])).join(','))].join('\r\n');}
+case 'remove-punctuation':return s.replace(/[\p{P}\p{S}]/gu,'');case 'extract-urls':return (s.match(/https?:\/\/[^\s<>"']+/gi)||[]).join('\n');case 'extract-emails':return (s.match(/[\w.%+\-]+@[\w.\-]+\.[A-Za-z]{2,}/g)||[]).join('\n');
+case 'sha256':return sha256(new TextEncoder().encode(s));
+default:throw Error('지원하지 않는 텍스트 도구입니다.');}}
+$('fk-text-run').addEventListener('click',async()=>{if(current?.mode!=='text')return;const btn=$('fk-text-run');btn.disabled=true;try{lastText=String(await runTextAction(current.preset.action,$('fk-text-input').value));$('fk-text-output').value=lastText;showOK('fk-text-status','완료했습니다.');}catch(e){showError('fk-text-status',e);}finally{btn.disabled=false;}});
+$('fk-text-copy').addEventListener('click',async()=>{try{await navigator.clipboard.writeText($('fk-text-output').value);showOK('fk-text-status','클립보드에 복사했습니다.');}catch(e){showError('fk-text-status',Error('복사가 실패했습니다. HTTPS 페이지에서 다시 시도하세요.'));}});
+$('fk-text-download').addEventListener('click',()=>{blobSave(new Blob([$('fk-text-output').value],{type:'text/plain;charset=utf-8'}),'filekit-text.txt');});
+const clamp=(v,min=0,max=255)=>Math.max(min,Math.min(max,v));
+function rgbToHsl(r,g,b){r/=255;g/=255;b/=255;const max=Math.max(r,g,b),min=Math.min(r,g,b),d=max-min;let h=0,s=0,l=(max+min)/2;if(d){s=d/(1-Math.abs(2*l-1));switch(max){case r:h=((g-b)/d)%6;break;case g:h=(b-r)/d+2;break;default:h=(r-g)/d+4;}h=(h*60+360)%360;}return [h,s,l];}
+function hslToRgb(h,s,l){h=((h%360)+360)%360;let c=(1-Math.abs(2*l-1))*s,x=c*(1-Math.abs(h/60%2-1)),m=l-c/2,r=0,g=0,b=0;if(h<60)[r,g,b]=[c,x,0];else if(h<120)[r,g,b]=[x,c,0];else if(h<180)[r,g,b]=[0,c,x];else if(h<240)[r,g,b]=[0,x,c];else if(h<300)[r,g,b]=[x,0,c];else [r,g,b]=[c,0,x];return [r,g,b].map(v=>Math.round((v+m)*255));}
+const rgbHex=rgb=>'#'+rgb.map(x=>clamp(Math.round(x)).toString(16).padStart(2,'0')).join('');
+function colorProcess(hex,action){const rgb=[parseInt(hex.slice(1,3),16),parseInt(hex.slice(3,5),16),parseInt(hex.slice(5,7),16)], [h,s,l]=rgbToHsl(...rgb);const shades=[];let text='';const rgbStr=`rgb(${rgb.join(', ')})`;const hslStr=`hsl(${Math.round(h)}, ${Math.round(s*100)}%, ${Math.round(l*100)}%)`;
+const shade=(dh,ds,dl)=>rgbHex(hslToRgb(h+dh,clamp(s+ds,0,1),clamp(l+dl,0,1)));
+switch(action){case 'rgb':text=rgbStr;shades.push(hex);break;
+case 'hsl':text=hslStr;shades.push(hex);break;
+case 'hsv':{const max=Math.max(...rgb),min=Math.min(...rgb),v=max/255,sv=max===0?0:(max-min)/max;text=`hsv(${Math.round(h)}, ${Math.round(sv*100)}%, ${Math.round(v*100)}%)`;shades.push(hex);break;}
+case 'complement':shades.push(hex,shade(180,0,0));text=`원본 ${hex}\n보색 ${shades[1]}`;break;
+case 'inverse':shades.push(hex,rgbHex(rgb.map(v=>255-v)));text=`원본 ${hex}\n반전 ${shades[1]}`;break;
+case 'light10':case 'light30':case 'dark10':case 'dark30':{let pct=action.endsWith('30')?.3:.1;let dir=action.startsWith('dark')?-1:1;shades.push(hex,shade(0,0,dir*pct));text=`원본 ${hex}\n결과 ${shades[1]}`;break;}
+case 'analogous':shades.push(shade(-30,0,0),hex,shade(30,0,0));text=shades.join(' · ');break;
+case 'triad':shades.push(hex,shade(120,0,0),shade(240,0,0));text=shades.join(' · ');break;
+case 'palette':for(let i=0;i<7;i++)shades.push(shade(0,0,.15+(i/6)*.70-l));text=shades.join(' · ');break;
+case 'contrast':{let lum=rgb.map(c=>{c/=255;return c<=.04045?c/12.92:((c+.055)/1.055)**2.4;});let luminance=.2126*lum[0]+.7152*lum[1]+.0722*lum[2];let white=(1.05)/(luminance+.05),black=(luminance+.05)/.05,fg=white>black?'#ffffff':'#000000';shades.push(hex,fg);text=`배경 ${hex}\n권장 글자색 ${fg}\n대비율 ${Math.max(white,black).toFixed(2)}:1`;break;}
+case 'css':shades.push(hex);text=`:root {\n  --color-primary: ${hex};\n  --color-primary-rgb: ${rgb.join(', ')};\n  --color-primary-hsl: ${hslStr};\n}`;break;
+default:throw Error('지원하지 않는 색상 도구입니다.');}
+return {text,shades};}
+function runColor(){if(current?.mode!=='color')return;const {text,shades}=colorProcess($('fk-color-input').value,current.preset.action);lastColor=text;$('fk-color-output').textContent=text;const el=$('fk-color-swatches');el.replaceChildren();shades.forEach(hex=>{const b=document.createElement('button');b.type='button';b.className='fk-swatch';b.style.background=hex;b.setAttribute('aria-label',hex+' 복사');b.title=hex+' 복사';b.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(hex);showOK('fk-color-status',hex+' 복사됨');}catch(e){showError('fk-color-status',e)}});el.append(b);});}
+$('fk-color-run').addEventListener('click',runColor);
+$('fk-color-copy').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(lastColor);showOK('fk-color-status','색상 값을 복사했습니다.');}catch(e){showError('fk-color-status',e);}});
+$('fk-color-input').addEventListener('input',runColor);
+$('fk-file-run').addEventListener('click',async()=>{if(current?.mode!=='file')return;const file=$('fk-file-input').files[0];if(!file){showError('fk-file-status',Error('파일을 선택하세요.'));return;}if(file.size>25*1024*1024){showError('fk-file-status',Error('25MB 이하 파일만 지원합니다.'));return;}const btn=$('fk-file-run');btn.disabled=true;try{const action=current.preset.action;let result='';if(action==='meta'){result=JSON.stringify({name:file.name,type:file.type||'알 수 없음',sizeBytes:file.size,sizeKB:(file.size/1024).toFixed(2),lastModified:new Date(file.lastModified).toLocaleString('ko-KR')},null,2);}
+else if(action==='hash')result=await sha256(await file.arrayBuffer());
+else if(action==='base64'||action==='dataurl'){if(file.size>1024*1024)throw Error('화면 출력이 너무 길어지는 것을 방지하기 위해 이 기능은 1MB 이하 파일만 지원합니다.');const data=new Uint8Array(await file.arrayBuffer());let binary='';for(let i=0;i<data.length;i+=8192)binary+=String.fromCharCode(...data.subarray(i,i+8192));result=(action==='dataurl'?`data:${file.type||'application/octet-stream'};base64,`:'')+btoa(binary);}
+else if(action==='header'){const buf=new Uint8Array(await file.slice(0,128).arrayBuffer());result=Array.from(buf,b=>b.toString(16).padStart(2,'0')).join(' ').toUpperCase();}else throw Error('지원하지 않는 기능입니다.');$('fk-file-output').textContent=result;showOK('fk-file-status','분석 완료');}
+catch(e){showError('fk-file-status',e);}finally{btn.disabled=false;}});
+$('fk-file-copy').addEventListener('click',async()=>{try{await navigator.clipboard.writeText($('fk-file-output').textContent);showOK('fk-file-status','복사했습니다.');}catch(e){showError('fk-file-status',e);}});
+// Keep original feature sections accessible via the catalog; do not replace the proven v2.0 engines.
+for(const [name,id] of [['카테고리','#top'],['도구 검색','#fk-search']]){};
+const nav=document.querySelector('.main-nav');if(nav){nav.innerHTML='<a href="#top" id="fk-go-home">모든 도구</a><a href="#fk-search" id="fk-go-search">검색</a><a href="#faq" id="fk-go-faq">도움말</a>';
+$('fk-go-home').addEventListener('click',e=>{e.preventDefault();showCatalog();});$('fk-go-search').addEventListener('click',e=>{e.preventDefault();showCatalog();$('fk-search').focus();});$('fk-go-faq').addEventListener('click',e=>{e.preventDefault();showTool('legacy-image');$('faq').hidden=false;$('faq').scrollIntoView();});}
+const brand=document.querySelector('.brand');if(brand)brand.addEventListener('click',e=>{e.preventDefault();showCatalog();});
+const brandCaption=document.querySelector('.brand-caption');if(brandCaption)brandCaption.textContent='브라우저 파일 도구';
+const footerVer=document.querySelector('.footer-brand span');if(footerVer)footerVer.textContent='v2.0';
+if(location.hash.startsWith('#tool=')){const id=decodeURIComponent(location.hash.slice(6));if(tools.some(t=>t.id===id))showTool(id);}
+window.addEventListener('hashchange',()=>{if(location.hash==='#top')showCatalog();else if(location.hash.startsWith('#tool=')){const id=decodeURIComponent(location.hash.slice(6));if(tools.some(t=>t.id===id))showTool(id);}});
+})();
+
+  </script>
+</body>
+</html>
